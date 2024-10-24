@@ -3,6 +3,7 @@ using WayFarer.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 
@@ -10,6 +11,7 @@ builder.Services.AddDbContext<WayFarerDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("WayFarerDbContext"),
             opt => opt.MigrationsAssembly("WayFarer")));
+
 
 var app = builder.Build();
 
