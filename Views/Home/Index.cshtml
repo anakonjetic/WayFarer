@@ -1,0 +1,61 @@
+﻿@using WayFarer.Controllers
+@model HomePageViewModel
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naslovnica - Web Aplikacija za Putovanja</title>
+    <link rel="stylesheet" href="~/css/indexStyle.css">
+</head>
+<body>
+   
+    <section id="itinerari">
+        <h2>My Itineraries</h2>
+        <div class="itinerary-container">
+            @foreach (var item in Model.Itineraries)
+            {
+                <div class="itinerary-card">
+                <div class="image-container">
+                    <img src="@item.City.Image" alt="@item.City.Name">
+                </div>
+                <div class="card-info">
+                    <h3>@item.City.Name</h3>
+                    <p>@item.StartDate.ToString("dd.MM.yyyy.") - @item.EndDate.ToString("dd.MM.yyyy.")</p>
+                </div>
+            </div>
+            }
+            
+        </div>
+    </section>
+
+    <!-- Popis gradova -->
+    <!-- Popis gradova -->
+<section id="gradovi">
+    <h2>Cities</h2>
+    <div class="city-container">
+         @foreach (var item in Model.Cities)
+            {
+                 <div class="city-card">
+            <div class="city-image-container">
+                    <img src="@item.Image" alt="@item.Name">
+                </div>
+                <div class="city-info">
+                    <h3>@item.Name</h3>
+                    <p>@item.Description</p>
+                </div>
+            </div>
+            }
+    </div>
+</section>
+
+    <!-- Gumb za kreiranje itinerara -->
+    <section id="novi-itinerar">
+        <button onclick="kreirajItinerar()">Kreiraj novi itinerar</button>
+    </section>
+
+    <script>
+        function kreirajItinerar() {
+            window.location.href = "/kreiraj-itinerar";
+        }
+    </script>
+</body>
