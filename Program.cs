@@ -13,6 +13,17 @@ builder.Services.AddDbContext<WayFarerDbContext>(options =>
             opt => opt.MigrationsAssembly("WayFarer")));
 
 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Trajanje sesije
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -28,7 +39,10 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+
 app.UseRouting();
+
+app.UseSession();
 
 
 app.MapControllerRoute(

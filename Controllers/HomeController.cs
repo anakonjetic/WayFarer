@@ -19,12 +19,19 @@ namespace WayFarer.Controllers
         public IActionResult Index()
         {
 
-            
+            // Provjera je li korisnik prijavljen
+            if (!HttpContext.Session.GetInt32("UserId").HasValue)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            var userId = HttpContext.Session.GetInt32("UserId").Value;
+
             var city = _dbContext.City.ToList();
             var itinerary = _dbContext.Itinerary
                 .Include(i => i.City)
+                .Where(u => u.UserId == userId)
                 .ToList();
-
 
 
             var viewModel = new HomePageViewModel
