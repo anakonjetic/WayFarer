@@ -22,10 +22,10 @@ namespace WayFarer.Repository.Configurations
             builder.Property(p => p.TotalPrice)
                .IsRequired();
 
-            builder.Property(p => p.userId)
+            builder.Property(p => p.UserId)
                .IsRequired();
 
-            builder.Property(p => p.cityId)
+            builder.Property(p => p.CityId)
                .IsRequired();
 
             builder.Ignore(p => p.User);

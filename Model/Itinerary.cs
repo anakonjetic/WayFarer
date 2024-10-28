@@ -12,21 +12,22 @@ namespace WayFarer.Model
         public decimal TotalPrice { get; set; }
 
         [ForeignKey("User")]
-        public int userId { get; set; }
+        public int UserId { get; set; }
         public virtual User? User { get; set; }
 
-        [ForeignKey("City")]
-        public int cityId { get; set; }
+        [ForeignKey(nameof(City))]
+        public int CityId { get; set; }
         public virtual City? City { get; set; }
 
         public virtual ICollection<Attraction>? Attractions { get; set; }
 
-        public Itinerary(DateTime startDate, DateTime endDate, int userId, decimal totalPrice)
+      /*  public Itinerary(DateTime startDate, DateTime endDate, int userId, decimal totalPrice, int cityId)
         {
             StartDate = startDate;
             EndDate = endDate;
-            this.userId = userId;
+            this.UserId = userId;
             TotalPrice = totalPrice;
-        }
+            this.CityId = cityId;
+        }*/
     }
 }

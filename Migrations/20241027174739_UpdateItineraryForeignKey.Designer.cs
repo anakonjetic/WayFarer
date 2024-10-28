@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WayFarer.Repository;
 
@@ -11,9 +12,10 @@ using WayFarer.Repository;
 namespace WayFarer.Migrations
 {
     [DbContext(typeof(WayFarerDbContext))]
-    partial class WayFarerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241027174739_UpdateItineraryForeignKey")]
+    partial class UpdateItineraryForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,10 +79,6 @@ namespace WayFarer.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -95,22 +93,7 @@ namespace WayFarer.Migrations
                         {
                             Id = 1,
                             Description = "Zagreb je najljepši grad!",
-                            Image = "https://wallpapercave.com/wp/wp2333635.jpg",
                             Name = "Zagreb"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Pariz je grad ljubavi!",
-                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT79lMmLbkyF2Dj2u1pNmWrjlUZfAjDQak0VA&s",
-                            Name = "Pariz"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Gospić je najveći grad u Europi!",
-                            Image = "https://www.mare-vrbnik.com/public/uploads/photos/articles/_gospic.jpg",
-                            Name = "Gospić"
                         });
                 });
 
@@ -148,8 +131,8 @@ namespace WayFarer.Migrations
                         {
                             Id = 1,
                             CityId = 1,
-                            EndDate = new DateTime(2024, 10, 27, 19, 20, 54, 21, DateTimeKind.Local).AddTicks(8624),
-                            StartDate = new DateTime(2024, 10, 27, 19, 20, 54, 21, DateTimeKind.Local).AddTicks(8621),
+                            EndDate = new DateTime(2024, 10, 27, 18, 47, 39, 469, DateTimeKind.Local).AddTicks(7284),
+                            StartDate = new DateTime(2024, 10, 27, 18, 47, 39, 469, DateTimeKind.Local).AddTicks(7282),
                             TotalPrice = 0m,
                             UserId = 1
                         });
@@ -248,7 +231,7 @@ namespace WayFarer.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2024, 10, 27, 19, 20, 54, 21, DateTimeKind.Local).AddTicks(8397),
+                            DateOfBirth = new DateTime(2024, 10, 27, 18, 47, 39, 469, DateTimeKind.Local).AddTicks(7077),
                             Email = "skorkut@gmail.com",
                             Gender = 0,
                             Name = "Srećko",
@@ -261,13 +244,11 @@ namespace WayFarer.Migrations
 
             modelBuilder.Entity("WayFarer.Model.Itinerary", b =>
                 {
-                    b.HasOne("WayFarer.Model.City", "City")
+                    b.HasOne("WayFarer.Model.City", null)
                         .WithMany("Itineraries")
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("City");
                 });
 
             modelBuilder.Entity("WayFarer.Model.City", b =>
