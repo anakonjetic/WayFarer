@@ -59,6 +59,13 @@ nav {
         transform: translateY(-5px);
     }
 
+.empty-card {
+    border: 1px dashed #ccc; /* Dotted border */
+    padding: 20px;
+    text-align: center; /* Center text */
+    background-color: #f9f9f9; /* Light background */
+}
+
 /* Stil za sliku na vrhu kartice */
 .image-container {
     width: 100%;

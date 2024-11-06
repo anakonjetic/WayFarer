@@ -12,19 +12,30 @@
     <section id="itinerari">
         <h2>My Itineraries</h2>
         <div class="itinerary-container">
-            @foreach (var item in Model.Itineraries)
-            {
-                <div class="itinerary-card">
-                <div class="image-container">
-                    <img src="@item.City.Image" alt="@item.City.Name">
-                </div>
+            @if (Model.Itineraries == null || !Model.Itineraries.Any())
+        {
+            <div class="itinerary-card empty-card">
                 <div class="card-info">
-                    <h3>@item.City.Name</h3>
-                    <p>@item.StartDate.ToString("dd.MM.yyyy.") - @item.EndDate.ToString("dd.MM.yyyy.")</p>
+                    <h3>No itineraries available</h3>
+                    <p>Please create a new itinerary to get started.</p>
                 </div>
             </div>
+        }
+        else
+        {
+            foreach (var item in Model.Itineraries)
+            {
+                <div class="itinerary-card">
+                    <div class="image-container">
+                        <img src="@item.City.Image" alt="@item.City.Name">
+                    </div>
+                    <div class="card-info">
+                        <h3>@item.City.Name</h3>
+                        <p>@item.StartDate.ToString("dd.MM.yyyy.") - @item.EndDate.ToString("dd.MM.yyyy.")</p>
+                    </div>
+                </div>
             }
-            
+        }            
         </div>
     </section>
 

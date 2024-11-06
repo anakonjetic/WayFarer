@@ -17,24 +17,49 @@ namespace WayFarer.Controllers
         }
 
         // Akcija za registraciju
-        [HttpPost]
-        public IActionResult Register(string name, string surname, DateTime dateOfBirth, string email, Gender gender, Role role, string username, string password)
+        [HttpGet]
+        public IActionResult Register()
         {
-            if (_dbContext.User.Any(u => u.Username == username || u.Email == email))
+            // Vraća formu za registraciju 
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Register(UserRegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Username or e-mail is already in use.");
+                return View(model); // Return view with validation messages
             }
 
-            // Kreira novog korisnika
-            var newUser = new User(name, surname, dateOfBirth, email, gender, role, username, password);
+            if (_dbContext.User.Any(u => u.Username == model.Username || u.Email == model.Email))
+            {
+                ModelState.AddModelError("", "Username or e-mail is already in use.");
+                return View(model);
+            }
+
+            // Create a new user based on the form input
+            var newUser = new User(
+                model.Name,
+                model.Surname,
+                model.DateOfBirth,
+                model.Email,
+                model.Gender,
+                model.Role, // Defaults to User
+                model.Username,
+                model.Password
+            );
+
             _dbContext.User.Add(newUser);
             _dbContext.SaveChanges();
 
-            // Automatski prijavi korisnika nakon registracije
+            // Automatically log in the user after registration
             HttpContext.Session.SetInt32("UserId", newUser.Id);
 
             return RedirectToAction("Index", "Home");
         }
+
         // Akcija za login
         [HttpGet]
         public IActionResult Login()
@@ -55,8 +80,18 @@ namespace WayFarer.Controllers
 
             // Postavljanje sesije nakon uspješne prijave
             HttpContext.Session.SetInt32("UserId", user.Id);
+            HttpContext.Session.SetString("UserRole", user.Role.ToString());
 
-            return RedirectToAction("Index", "Home");
+            if (user.Role == Role.Administrator)
+            {
+                return RedirectToAction("Dashboard", "Admin");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            
         }
 
         // Akcija za logout
@@ -74,5 +109,34 @@ namespace WayFarer.Controllers
 
         [Required]
         public string Password { get; set; }
+    }
+
+    public class UserRegisterViewModel
+    {
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string Surname { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        public DateTime DateOfBirth { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        public Gender Gender { get; set; }
+
+        [Required]
+        public string Username { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        public Role Role { get; set; } = Role.Basic;
     }
 }
