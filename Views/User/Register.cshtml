@@ -1,4 +1,6 @@
-﻿@page
+﻿@using WayFarer.Controllers
+@using WayFarer.Model.Enum
+@model WayFarer.Controllers.UserRegisterViewModel
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -6,9 +8,10 @@
     <style>
         .containerRegister {
             width: 300px;
+            margin: 0 auto;
             padding-top: 50px;
         }
-        input[type="text"], input[type="email"], input[type="date"], select {
+        input[type="text"], input[type="email"], input[type="date"], input[type="password"], select {
             width: 100%;
             padding: 10px;
             margin: 5px 0 20px 0;
@@ -29,25 +32,45 @@
 
 <div class="containerRegister">
     <h2>Register</h2>
-    <form action="/register">
-        <label for="firstname">First Name:</label>
-        <input type="text" id="firstname" name="firstname" required>
+    <form asp-action="Register" asp-controller="User" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
 
-        <label for="lastname">Last Name:</label>
-        <input type="text" id="lastname" name="lastname" required>
+        <label for="name">First Name:</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
 
-        <label for="dateofbirth">Date of Birth:</label>
-        <input type="date" id="dateofbirth" name="dateofbirth" required>
+        <label for="surname">Last Name:</label>
+        <input asp-for="Surname" class="form-control" />
+        <span asp-validation-for="Surname" class="text-danger"></span>
+
+        <label for="dateOfBirth">Date of Birth:</label>
+        <input asp-for="DateOfBirth" type="date" class="form-control" />
+        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <input asp-for="Email" type="email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
 
-        <label for="gender">gender:</label>
-        <select id="gender" name="gender" required>
-            <option value="m">Male</option>
-            <option value="f">Female</option>
-            <option value="x">Other</option>
+        <label for="gender">Gender:</label>
+        <select asp-for="Gender" class="form-control">
+            <option value="">Select Gender</option>
+           @foreach (var gender in Enum.GetValues(typeof(Gender)).Cast<Gender>())
+            {
+                <option value="@gender">@gender</option>
+            }
         </select>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+
+        <label for="username">Username:</label>
+        <input asp-for="Username" class="form-control" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+
+        <label for="password">Password:</label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+
+        <!-- Hidden field to set Role as 'User' -->
+        <input type="hidden" asp-for="Role" value="Basic" />
 
         <button type="submit">Register</button>
     </form>
