@@ -1,0 +1,69 @@
+﻿/* Resetiranje osnovnih stilova */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* kartice admin akcija */
+#actions {
+    padding: 2rem;
+    background-color: #f9f9f9;
+}
+    
+    #actions h2 {
+        text-align:center
+    }
+
+.actions-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top:2rem;
+    justify-content: center;
+}
+
+.action-card {
+    width: 300px;
+    border-radius: 15px;
+    overflow: hidden; /* Ograničava sav sadržaj unutar kartice */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+    background-color: #fff;
+}
+    .action-card:hover {
+        transform: translateY(-5px);
+    }
+
+
+/* Stil za sliku na vrhu kartice */
+.image-container {
+    width: 100%;
+    height: 180px;
+    overflow: hidden; /* Ograničava sliku unutar kontejnera */
+}
+
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+        object-fit: contain; /* Slika se prilagođava unutar kontejnera */
+        display: block;
+    }
+
+/* Informacije o kartici */
+.card-info {
+    padding: 1rem;
+    text-align: center;
+}
+
+    .card-info h3 {
+        font-size: 1.25rem;
+        color: #333;
+    }
+
+    .card-info p {
+        font-size: 1rem;
+        color: #666;
+    }
+
