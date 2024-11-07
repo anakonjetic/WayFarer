@@ -2,5 +2,45 @@
     ViewData["Title"] = "Admin Dashboard";
 }
 
-<h1>Welcome to the Admin Dashboard</h1>
-<p>This is a restricted area for administrators only.</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WayFarer - Admin Dashboard</title>
+    <link rel="stylesheet" href="~/css/dashboardStyle.css">
+</head>
+<body>
+   
+    <section id="actions">
+        <h2>Admin Dashboard</h2>
+        <div class="actions-container">            
+                <a asp-controller="Admin" asp-action="ManageCities" class="action-card" style="text-decoration:none">
+                    <div class="image-container">
+                        <img src="/img/city_icon.png" alt="Manage Cities">
+                    </div>
+                    <div class="card-info">
+                        <h3>Manage Cities</h3>
+                        <p>Add new, edit/delete existing city data.</p>
+                    </div>
+                </a>    
+                <div class="action-card">
+                    <div class="image-container">
+                        <img src="/img/accomodation_icon.png" alt="Manage Attractions">
+                    </div>
+                    <div class="card-info">
+                        <h3>Manage Attractions</h3>
+                        <p>Manage accomodation, restaurant, pub and sights data.</p>
+                    </div>
+                </div>     
+                <div class="action-card">
+                    <div class="image-container">
+                        <img src="/img/user_Icon.png" alt="Manage Users">
+                    </div>
+                    <div class="card-info">
+                        <h3>Manage Users</h3>
+                        <p>Deactivate/active users, manage roles.</p>
+                    </div>
+                </div>     
+        </div>
+    </section>
+
+</body>
