@@ -1,0 +1,42 @@
+﻿@model WayFarer.Controllers.CityViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WayFarer - @Model.Id != null ? "Edit City" : "Add City"</title>
+    <link rel="stylesheet" href="~/css/manageCitiesStyle.css">
+</head>
+<body>
+
+    <section id="city-form">
+        <h2>@(Model.Id > 0 ? "Edit City" : "Add New City")</h2>
+
+        <form asp-action="@(Model.Id > 0 ? "ManageCitiesEdit" : "ManageCitiesAdd")" asp-controller="Admin" method="post">
+            @if (@Model.Id > 0)
+            {
+                <input type="hidden" asp-for="Id" />
+            }
+
+            <div class="form-group">
+                <label asp-for="Name">City Name</label>
+                <input type="text" asp-for="Name" required />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description">Description</label>
+                <textarea asp-for="Description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Image">Image URL</label>
+                <input type="text" asp-for="Image" />
+            </div>
+
+            <button type="submit">@(Model.Id > 0 ? "Update City" : "Add City")</button>
+        </form>
+    </section>
+
+</body>
+</html>

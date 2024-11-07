@@ -13,7 +13,7 @@
     <section id="actions">
         <h2>Admin Dashboard</h2>
         <div class="actions-container">            
-                <div class="action-card">
+                <a asp-controller="Admin" asp-action="ManageCities" class="action-card" style="text-decoration:none">
                     <div class="image-container">
                         <img src="/img/city_icon.png" alt="Manage Cities">
                     </div>
@@ -21,7 +21,7 @@
                         <h3>Manage Cities</h3>
                         <p>Add new, edit/delete existing city data.</p>
                     </div>
-                </div>    
+                </a>    
                 <div class="action-card">
                     <div class="image-container">
                         <img src="/img/accomodation_icon.png" alt="Manage Attractions">
