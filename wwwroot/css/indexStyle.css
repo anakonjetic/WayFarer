@@ -1,11 +1,11 @@
-﻿/* Resetiranje osnovnih stilova */
+﻿/* Reset basic styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Stilizacija navigacije */
+/* Navigation styles */
 nav {
     display: flex;
     justify-content: space-between;
@@ -34,31 +34,58 @@ nav {
             text-decoration: underline;
         }
 
-/* Sekcija s karticama putovanja */
+/* Itinerary section */
 #itinerari {
     padding: 2rem;
     background-color: #f9f9f9;
 }
 
+    #itinerari h2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+/* Scrollable container for itineraries */
 .itinerary-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
+    align-items: center;
+    justify-content: center; /* Center the cards */
+    position: relative;
+    overflow: hidden; /* Hide anything outside the scrollable container */
+    gap: 20px; /* Optional, adjust if you want space between the cards */
 }
 
-.itinerary-card {
-    width: 300px;
-    border-radius: 15px;
-    overflow: hidden; /* Ograničava sav sadržaj unutar kartice */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
-    background-color: #fff;
+/* Ensure the scroll container takes full width of its parent */
+.itinerary-scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 0 20px; /* Optional, for some space at the left and right */
+    justify-content: center; /* Center the items inside the scrollable container */
 }
+
+/* Itinerary card styles */
+.itinerary-card {
+    width: 250px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
     .itinerary-card:hover {
         transform: translateY(-5px);
     }
 
+/* Remove underlines from all itinerary links */
+.itinerary-link {
+    text-decoration: none; /* Remove underline from any link inside the itinerary cards */
+}
+
+/* Empty itinerary card */
 .empty-card {
     border: 1px dashed #ccc; /* Dotted border */
     padding: 20px;
@@ -66,29 +93,28 @@ nav {
     background-color: #f9f9f9; /* Light background */
 }
 
-/* Stil za sliku na vrhu kartice */
+/* Image inside itinerary card */
 .image-container {
     width: 100%;
     height: 180px;
-    overflow: hidden; /* Ograničava sliku unutar kontejnera */
+    overflow: hidden;
 }
 
     .image-container img {
         width: 100%;
-        height: 100%;
-        object-fit: cover; /* Slika se prilagođava unutar kontejnera */
-        display: block; /* Sprječava dodatni razmak oko slike */
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px;
     }
 
-/* Informacije o kartici */
+/* Info inside itinerary card */
 .card-info {
     padding: 1rem;
     text-align: center;
 }
 
     .card-info h3 {
-        font-size: 1.25rem;
-        color: #333;
+        margin-top: 10px;
     }
 
     .card-info p {
@@ -96,48 +122,75 @@ nav {
         color: #666;
     }
 
-/* Sekcija popisa gradova */
+/* Arrows for scrolling */
+.arrow {
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+    z-index: 10;
+}
+
+    .arrow:hover {
+        background-color: #ccc;
+    }
+
+    /* Hide arrows by default (to be shown conditionally) */
+    .arrow.hidden {
+        display: none;
+    }
+
+/* City section */
 #gradovi {
     padding: 2rem;
 }
 
 .city-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
 }
 
+.city-scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px;
+}
+
+/* City card styles */
 .city-card {
-    width: 200px;
-    border-radius: 15px;
-    overflow: hidden; /* Ograničava sav sadržaj unutar kartice */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
-    background-color: #fff;
+    width: 250px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
     .city-card:hover {
         transform: translateY(-5px);
     }
 
-/* Stil za sliku na vrhu kartice */
+/* Image inside city card */
 .city-image-container {
     width: 100%;
     height: 180px;
-    overflow: hidden; /* Ograničava sliku unutar kontejnera */
+    overflow: hidden; /* Limit image inside container */
 }
 
     .city-image-container img {
         width: 100%;
         height: 100%;
+        object-fit: cover;
         border-radius: 15px;
-        object-fit: cover; /* Slika se prilagođava unutar kontejnera */
-        display: block;
-        padding: 5%/* Sprječava dodatni razmak oko slike */
     }
 
-/* Informacije o kartici */
+/* City card info */
 .city-info {
     padding: 1rem;
     text-align: center;
@@ -153,7 +206,7 @@ nav {
         color: #666;
     }
 
-/* Gumb za kreiranje itinerara */
+/* Button for creating itineraries */
 #novi-itinerar {
     text-align: center;
     padding: 2rem;
