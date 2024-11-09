@@ -1,174 +1,155 @@
-﻿/* Resetiranje osnovnih stilova */
+﻿/* Reset osnovnih stilova */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Stilizacija navigacije */
-nav {
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Sekcije */
+.section {
+    padding: 2rem;
+    background-color: #f0f0f0; /* Svijetlo siva pozadina */
+    margin-bottom: 1rem;
+    border-radius: 10px;
+}
+
+/* Naslovi */
+h2 {
+    margin-bottom: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    background-color: #333;
+}
+
+    h2 span {
+        font-size: 1.5rem; /* Veća veličina fonta za naslove */
+    }
+
+/* Gumb za dodavanje itinerara */
+.btn {
+    background-color: #6c757d; /* Siva boja */
     color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
 }
 
-    nav h1 {
-        font-size: 1.5rem;
+    .btn:hover {
+        background-color: #5a6268; /* Tamnija siva na hover */
     }
 
-    nav ul {
-        list-style: none;
-        display: flex;
-        gap: 1rem;
-    }
-
-    nav a {
-        color: #fff;
-        text-decoration: none;
-    }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-/* Sekcija s karticama putovanja */
-#itinerari {
-    padding: 2rem;
-    background-color: #f9f9f9;
-}
-
-.itinerary-container {
+/* Kontejner za skrolanje */
+.scroll-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.itinerary-card {
-    width: 300px;
-    border-radius: 15px;
-    overflow: hidden; /* Ograničava sav sadržaj unutar kartice */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
-    background-color: #fff;
-}
-    .itinerary-card:hover {
-        transform: translateY(-5px);
-    }
-
-.empty-card {
-    border: 1px dashed #ccc; /* Dotted border */
-    padding: 20px;
-    text-align: center; /* Center text */
-    background-color: #f9f9f9; /* Light background */
-}
-
-/* Stil za sliku na vrhu kartice */
-.image-container {
-    width: 100%;
-    height: 180px;
-    overflow: hidden; /* Ograničava sliku unutar kontejnera */
-}
-
-    .image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Slika se prilagođava unutar kontejnera */
-        display: block; /* Sprječava dodatni razmak oko slike */
-    }
-
-/* Informacije o kartici */
-.card-info {
-    padding: 1rem;
-    text-align: center;
-}
-
-    .card-info h3 {
-        font-size: 1.25rem;
-        color: #333;
-    }
-
-    .card-info p {
-        font-size: 1rem;
-        color: #666;
-    }
-
-/* Sekcija popisa gradova */
-#gradovi {
-    padding: 2rem;
-}
-
-.city-container {
+/* Sadržaj za skrolanje (kartice) */
+.scroll-content {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-}
-
-.city-card {
-    width: 200px;
-    border-radius: 15px;
-    overflow: hidden; /* Ograničava sav sadržaj unutar kartice */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
-    background-color: #fff;
-}
-
-    .city-card:hover {
-        transform: translateY(-5px);
-    }
-
-/* Stil za sliku na vrhu kartice */
-.city-image-container {
+    flex-direction: row;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px;
     width: 100%;
-    height: 180px;
-    overflow: hidden; /* Ograničava sliku unutar kontejnera */
 }
 
-    .city-image-container img {
-        width: 100%;
-        height: 100%;
-        border-radius: 15px;
-        object-fit: cover; /* Slika se prilagođava unutar kontejnera */
-        display: block;
-        padding: 5%/* Sprječava dodatni razmak oko slike */
-    }
-
-/* Informacije o kartici */
-.city-info {
-    padding: 1rem;
-    text-align: center;
-}
-
-    .city-info h3 {
-        font-size: 1.25rem;
-        color: #333;
-    }
-
-    .city-info p {
-        font-size: 1rem;
-        color: #666;
-    }
-
-/* Gumb za kreiranje itinerara */
-#novi-itinerar {
-    text-align: center;
-    padding: 2rem;
-}
-
-button {
-    padding: 0.75rem 1.5rem;
-    background-color: #007bff;
+/* Gumbi za skrolanje */
+.scroll-btn {
+    background-color: #6c757d; /* Siva boja */
     color: #fff;
     border: none;
-    border-radius: 5px;
-    font-size: 1rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
     cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    opacity: 0.8;
 }
 
-    button:hover {
-        background-color: #0056b3;
+    .scroll-btn:hover {
+        opacity: 1;
     }
+
+.left {
+    left: 10px;
+}
+
+.right {
+    right: 10px;
+}
+
+/* Stilovi kartica */
+.itinerary-card, .city-card {
+    min-width: 250px;
+    max-width: 300px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    flex-shrink: 0;
+    text-decoration: none; /* Maknut underline */
+}
+
+/* Stil za linkove na itinerare i gradove */
+.itinerary-link, .city-link {
+    color: #000; /* Crna boja fonta */
+    text-decoration: none; /* Maknuta underline */
+}
+
+    .itinerary-link:hover, .city-link:hover {
+        color: #000; /* Ostavlja crnu boju na hover */
+    }
+
+/* Slikovne kartice */
+.image-container img,
+.city-image-container img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card-info, .city-info {
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Prazna kartica */
+.empty-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #ccc;
+}
+
+/* Responsivnost */
+@media (max-width: 600px) {
+    .scroll-content {
+        gap: 10px;
+    }
+
+    .itinerary-card, .city-card {
+        min-width: 200px;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+    }
+}
