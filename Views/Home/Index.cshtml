@@ -1,5 +1,7 @@
 ﻿@model WayFarer.Controllers.HomePageViewModel
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,26 +11,21 @@
 <body>
 
     <!-- My Itineraries Section -->
-    <section id="itinerari">
-        <h2>My Itineraries <button onclick="kreirajItinerar()">Create New Itinerary</button></h2>
-        <div class="itinerary-container">
-            <!-- Left Arrow to Scroll -->
-            <span class="arrow" id="left-arrow" onclick="scrollContent('left', 'itinerary')">&lt;</span>
-
-            <!-- Itineraries displayed in a scrollable container -->
-            <div class="itinerary-scroll" id="itinerary-scroll">
+    <!-- My Itineraries Section -->
+    <section id="itinerari" class="section">
+        <h2>My Itineraries <button class="btn" onclick="kreirajItinerar()">+ New Itinerary </button></h2>
+        <div class="scroll-container">
+            <button class="scroll-btn left" onclick="scrollLeft('itinerary-scroll')">&lt;</button>
+            <div id="itinerary-scroll" class="scroll-content">
                 @if (Model.Itineraries == null || !Model.Itineraries.Any())
                 {
                     <div class="itinerary-card empty-card">
-                        <div class="card-info">
-                            <h3>No itineraries available</h3>
-                            <p>Please create a new itinerary to get started.</p>
-                        </div>
+                        <h3>No itineraries available</h3>
+                        <p>Please create a new itinerary to get started.</p>
                     </div>
                 }
                 else
                 {
-                    <!-- Display all itineraries -->
                     @foreach (var item in Model.Itineraries.OrderBy(i => i.StartDate))
                     {
                         <a href="/Itinerary/Details/@item.Id" class="itinerary-link">
@@ -46,94 +43,53 @@
                     }
                 }
             </div>
-
-            <!-- Right Arrow to Scroll -->
-            <span class="arrow" id="right-arrow" onclick="scrollContent('right', 'itinerary')">&gt;</span>
+            <button class="scroll-btn right" onclick="scrollRight('itinerary-scroll')">&gt;</button>
         </div>
     </section>
 
     <!-- Cities Section -->
-    <section id="gradovi">
+    <section id="gradovi" class="section">
         <h2>Cities</h2>
-        <div class="city-container">
-            <!-- Left Arrow to Scroll -->
-            <span class="arrow" id="left-arrow-city" onclick="scrollContent('left', 'city')">&lt;</span>
-
-            <!-- Cities displayed in a scrollable container -->
-            <div class="city-scroll" id="city-scroll">
-                @foreach (var item in Model.Cities.Take(5))
+        <div class="scroll-container">
+            <button class="scroll-btn left" onclick="scrollLeft('city-scroll')">&lt;</button>
+            <div id="city-scroll" class="scroll-content">
+                @foreach (var item in Model.Cities.Take(100))
                 {
-                    <div class="city-card">
-                        <div class="city-image-container">
-                            <img src="@item.Image" alt="@item.Name">
+                    <a href="/City/Details/@item.Id" class="city-link">
+                        <div class="city-card">
+                            <div class="city-image-container">
+                                <img src="@item.Image" alt="@item.Name">
+                            </div>
+                            <div class="city-info">
+                                <h3>@item.Name</h3>
+                                <p>@item.Description</p>
+                            </div>
                         </div>
-                        <div class="city-info">
-                            <h3>@item.Name</h3>
-                            <p>@item.Description</p>
-                        </div>
-                    </div>
+                    </a>
                 }
             </div>
-
-            <!-- Right Arrow to Scroll -->
-            <span class="arrow" id="right-arrow-city" onclick="scrollContent('right', 'city')">&gt;</span>
+            <button class="scroll-btn right" onclick="scrollRight('city-scroll')">&gt;</button>
         </div>
     </section>
 
-    <script>
-        // Function to handle scrolling the containers for both itineraries and cities
-        function scrollContent(direction, section) {
-            var container = document.getElementById(section + '-scroll');
-            var scrollAmount = 300; // Adjust the scrolling amount based on your layout
 
-            if (direction === 'left') {
-                container.scrollBy({
-                    left: -scrollAmount,
-                    behavior: 'smooth'
-                });
-            } else if (direction === 'right') {
-                container.scrollBy({
-                    left: scrollAmount,
-                    behavior: 'smooth'
-                });
-            }
-            toggleArrowsVisibility();
+    <script>
+        // Scroll content left
+        function scrollLeft(containerId) {
+            const container = document.getElementById(containerId);
+            container.scrollBy({ left: -300, behavior: 'smooth' });
         }
 
-        // Function to toggle visibility of arrows
-        function toggleArrowsVisibility() {
-            // Itinerary arrows
-            var itineraryContainer = document.getElementById('itinerary-scroll');
-            var leftArrowItinerary = document.getElementById('left-arrow');
-            var rightArrowItinerary = document.getElementById('right-arrow');
-            if (itineraryContainer.scrollWidth > itineraryContainer.clientWidth) {
-                leftArrowItinerary.classList.remove('hidden');
-                rightArrowItinerary.classList.remove('hidden');
-            } else {
-                leftArrowItinerary.classList.add('hidden');
-                rightArrowItinerary.classList.add('hidden');
-            }
-
-            // City arrows
-            var cityContainer = document.getElementById('city-scroll');
-            var leftArrowCity = document.getElementById('left-arrow-city');
-            var rightArrowCity = document.getElementById('right-arrow-city');
-            if (cityContainer.scrollWidth > cityContainer.clientWidth) {
-                leftArrowCity.classList.remove('hidden');
-                rightArrowCity.classList.remove('hidden');
-            } else {
-                leftArrowCity.classList.add('hidden');
-                rightArrowCity.classList.add('hidden');
-            }
+        // Scroll content right
+        function scrollRight(containerId) {
+            const container = document.getElementById(containerId);
+            container.scrollBy({ left: 300, behavior: 'smooth' });
         }
 
         // Function for creating new itinerary
         function kreirajItinerar() {
             window.location.href = "/Itinerary/Create";
         }
-
-        // Initial check to hide/show arrows on page load
-        window.onload = toggleArrowsVisibility;
     </script>
 
 </body>
