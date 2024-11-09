@@ -168,6 +168,79 @@ namespace WayFarer.Controllers
             return View(attractions.ToList());
         }
 
+        [HttpGet]
+        public IActionResult ManageAttractionsAdd()
+        {
+            var model = new Attraction() { };
+            return View("ManageAttractionsAddEdit", model);
+        }
+
+        [HttpPost]
+        public IActionResult ManageAttractionsAdd(Attraction model)
+        {
+            if (!ModelState.IsValid) return View("ManageAttractionsAddEdit", model);
+
+            _dbContext.Attraction.Add(model);
+            _dbContext.SaveChanges();
+            return RedirectToAction("ManageAttractions");
+        }
+
+        [HttpGet]
+        public IActionResult ManageAttractionsEdit(int id)
+        {
+            var model = _dbContext.Attraction.Include(c => c.City).FirstOrDefault(a => a.Id == id);
+            if (model == null) return NotFound();
+
+            return View("ManageAttractionsAddEdit", model);
+        }
+
+        [HttpPost]
+        public IActionResult ManageAttractionsEdit(Attraction model)
+        {
+            if (!ModelState.IsValid) return View("ManageAttractionsAddEdit", model);
+
+            _dbContext.Attraction.Update(model);
+            _dbContext.SaveChanges();
+            return RedirectToAction("ManageAttractions");
+        }
+
+        [HttpPost]
+        public IActionResult ManageAttractionsDelete(int id)
+        {
+            var attraction = _dbContext.Attraction.Find(id);
+            if (attraction == null) return NotFound();
+
+            _dbContext.Attraction.Remove(attraction);
+            _dbContext.SaveChanges();
+            return RedirectToAction("ManageAttractions");
+        }
+
+        [HttpGet]
+        public IActionResult ManageAttractionsDetails(int id)
+        {
+            var attraction = _dbContext.Attraction
+                .Include(a => a.City)
+                .FirstOrDefault(a => a.Id == id);
+
+            if (attraction == null) return NotFound();
+
+            return View(attraction);
+        }
+
+
+        [HttpGet]
+        public JsonResult SearchCity(string query)
+        {
+            var cities = _dbContext.City
+                .Where(c => c.Name.Contains(query))
+                .Select(c => new { c.Id, c.Name })
+                .Take(5)
+                .ToList();
+
+            return Json(cities);
+        }
+    
+
     }
 
 

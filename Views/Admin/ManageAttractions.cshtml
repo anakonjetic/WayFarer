@@ -12,7 +12,7 @@
 <section id="attractions-management">
     <div class="actions-header">
         <h2>Manage Attractions</h2>
-        <button class="add-attraction-btn" onclick="window.location.href='@Url.Action("Add", "Attraction")'">Add New Attraction</button>
+        <button class="add-attraction-btn" onclick="window.location.href='@Url.Action("ManageAttractionsAdd", "Admin")'">Add New Attraction</button>
     </div>
 
     <div class="filter-sort-bar">
@@ -53,6 +53,8 @@
 </section>
 </body>
 <script>
+
+
  function applyFilters() {
     const categoryFilter = document.getElementById("categoryFilter").value;
     const sortOption = document.getElementById("sortOption").value;
