@@ -250,7 +250,68 @@ namespace WayFarer.Controllers
 
             return Json(cities);
         }
-    
+
+
+        [HttpGet]
+        public IActionResult FilterTableUsers(string roleFilter, string sortOption, bool? isActiveFilter)
+        {
+            var users = _dbContext.User.AsQueryable();
+
+            if (!string.IsNullOrEmpty(roleFilter) && Enum.TryParse<Role>(roleFilter, out var roleEnum))
+            {
+                users = users.Where(u => u.Role == roleEnum);
+            }
+
+            if (isActiveFilter.HasValue)
+            {
+                users = users.Where(u => u.IsActive == isActiveFilter.Value);
+            }
+
+            users = sortOption switch
+            {
+                "NameAsc" => users.OrderBy(u => u.Name),
+                "NameDesc" => users.OrderByDescending(u => u.Name),
+                "RoleAsc" => users.OrderBy(u => u.Role),
+                "RoleDesc" => users.OrderByDescending(u => u.Role),
+                _ => users
+            };
+
+            return PartialView("_FilterTableUsers", users.ToList());
+        }
+
+
+        public IActionResult ManageUsers(string roleFilter, string sortOption)
+        {
+            var users = _dbContext.User.OrderBy(u => u.Name).AsQueryable();
+
+         
+            return View(users.ToList());
+        }
+
+        [HttpPost]
+        public IActionResult ManageUsersToggleStatus(int userId)
+        {
+            var user = _dbContext.User.Find(userId);
+            if (user != null)
+            {
+                user.IsActive = !user.IsActive;
+                _dbContext.SaveChanges();
+            }
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult ManageUsersChangeRole(int userId, Role newRole)
+        {
+            var user = _dbContext.User.Find(userId);
+            if (user != null)
+            {
+                user.Role = newRole;
+                _dbContext.SaveChanges();
+            }
+            return Ok();
+        }
+
 
     }
 

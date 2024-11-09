@@ -48,7 +48,8 @@ namespace WayFarer.Controllers
                 model.Gender,
                 model.Role, // Defaults to User
                 model.Username,
-                model.Password
+                model.Password,
+                true
             );
 
             _dbContext.User.Add(newUser);
@@ -76,6 +77,12 @@ namespace WayFarer.Controllers
             if (user == null)
             {
                 return BadRequest("Wrong username or password.");
+            }
+
+            if (!user.IsActive)
+            {
+                ModelState.AddModelError("", "Your account is deactivated. Please contact support for assistance.");
+                return View();
             }
 
             // Postavljanje sesije nakon uspješne prijave
