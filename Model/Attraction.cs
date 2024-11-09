@@ -19,13 +19,13 @@ namespace WayFarer.Model
 
         public virtual ICollection<Review>? Reviews { get; set; }
 
-        public Attraction(string name, Category category, decimal price, int cityId)
+    /*    public Attraction(string name, Category category, decimal price, int cityId)
         {
             Name = name;
             Category = category;
             Price = price;
             this.cityId = cityId;
-        }
+        }*/
 
     }
 }
