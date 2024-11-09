@@ -118,13 +118,18 @@ namespace WayFarer.Controllers
             return RedirectToAction("ManageCities");
         }
 
-        public IActionResult FilterTableAttractions(Category? categoryFilter, string sortOption)
+        public IActionResult FilterTableAttractions(Category? categoryFilter, string sortOption, int? cityFilter)
         {
             var attractions = _dbContext.Attraction.Include(c => c.City).AsQueryable();
 
             if (categoryFilter.HasValue)
             {
                 attractions = attractions.Where(a => a.Category == categoryFilter.Value);
+            }
+
+            if (cityFilter.HasValue)
+            {
+                attractions = attractions.Where(a => a.cityId == cityFilter.Value);
             }
 
             var sortedAttractions = attractions.AsEnumerable();
@@ -147,13 +152,19 @@ namespace WayFarer.Controllers
         }
 
 
-        public IActionResult ManageAttractions(Category? categoryFilter, string sortOption)
+        public IActionResult ManageAttractions(Category? categoryFilter, string sortOption, int? cityFilter)
         {
             var attractions = _dbContext.Attraction.Include(c => c.City).AsQueryable();
+            ViewBag.Cities = _dbContext.City.ToList();
 
             if (categoryFilter.HasValue)
             {
                 attractions = attractions.Where(a => a.Category == categoryFilter.Value);
+            }
+
+            if (cityFilter.HasValue)
+            {
+                attractions = attractions.Where(a => a.cityId == cityFilter.Value);
             }
 
             attractions = sortOption switch

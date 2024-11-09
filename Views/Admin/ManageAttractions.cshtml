@@ -33,6 +33,15 @@
             <option value="RatingAsc">Rating (Low to High)</option>
             <option value="RatingDesc">Rating (High to Low)</option>
         </select>
+
+        <label for="cityFilter">Filter by City:</label>
+        <select id="cityFilter" onchange="applyFilters()">
+            <option value="">All Cities</option>
+            @foreach (var city in ViewBag.Cities as List<City>)
+            {
+                <option value="@city.Id">@city.Name</option>
+            }
+        </select>
     </div>
 
     <table class="attractions-table">
@@ -57,9 +66,10 @@
 
  function applyFilters() {
     const categoryFilter = document.getElementById("categoryFilter").value;
+    const cityFilter = document.getElementById("cityFilter").value;
     const sortOption = document.getElementById("sortOption").value;
 
-    fetch(`@Url.Action("FilterTableAttractions", "Admin")?categoryFilter=${categoryFilter}&sortOption=${sortOption}`, {
+    fetch(`@Url.Action("FilterTableAttractions", "Admin")?categoryFilter=${categoryFilter}&sortOption=${sortOption}&cityFilter=${cityFilter}`, {
         method: 'GET',
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
