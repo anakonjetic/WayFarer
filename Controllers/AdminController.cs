@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using WayFarer.Model;
 using WayFarer.Model.Enum;
+using Microsoft.EntityFrameworkCore;
 using WayFarer.Repository;
 
 namespace WayFarer.Controllers
@@ -116,6 +117,57 @@ namespace WayFarer.Controllers
 
             return RedirectToAction("ManageCities");
         }
+
+        public IActionResult FilterTableAttractions(Category? categoryFilter, string sortOption)
+        {
+            var attractions = _dbContext.Attraction.Include(c => c.City).AsQueryable();
+
+            if (categoryFilter.HasValue)
+            {
+                attractions = attractions.Where(a => a.Category == categoryFilter.Value);
+            }
+
+            var sortedAttractions = attractions.AsEnumerable();
+
+            sortedAttractions = sortOption switch
+            {
+                "PriceAsc" => sortedAttractions.OrderBy(a => a.Price),
+                "PriceDesc" => sortedAttractions.OrderByDescending(a => a.Price),
+                "RatingAsc" => sortedAttractions.OrderBy(a => a.Reviews?.Average(r => r.Rating) ?? 0),
+                "RatingDesc" => sortedAttractions.OrderByDescending(a => a.Reviews?.Average(r => r.Rating) ?? 0),
+                _ => sortedAttractions
+            };
+
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                return PartialView("_FilterTableAttractions", sortedAttractions.ToList());
+            }
+
+            return View("ManageAttractions", sortedAttractions.ToList());
+        }
+
+
+        public IActionResult ManageAttractions(Category? categoryFilter, string sortOption)
+        {
+            var attractions = _dbContext.Attraction.Include(c => c.City).AsQueryable();
+
+            if (categoryFilter.HasValue)
+            {
+                attractions = attractions.Where(a => a.Category == categoryFilter.Value);
+            }
+
+            attractions = sortOption switch
+            {
+                "PriceAsc" => attractions.OrderBy(a => a.Price),
+                "PriceDesc" => attractions.OrderByDescending(a => a.Price),
+                "RatingAsc" => attractions.OrderBy(a => a.Reviews.Average(r => r.Rating)),
+                "RatingDesc" => attractions.OrderByDescending(a => a.Reviews.Average(r => r.Rating)),
+                _ => attractions
+            };
+
+            return View(attractions.ToList());
+        }
+
     }
 
 

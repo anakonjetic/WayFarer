@@ -40,7 +40,10 @@ namespace WayFarer.Repository
                 .WithMany(c => c.Itineraries)
                 .HasForeignKey(i => i.CityId);
 
-
+            modelBuilder.Entity<Attraction>()
+               .HasOne(i => i.City)
+               .WithMany(c => c.Attractions)
+               .HasForeignKey(i => i.cityId);
 
             modelBuilder.Entity<User>().HasData(new User("Srećko","Korkut", DateTime.Now, "skorkut@gmail.com", Gender.Male, Role.Administrator, "caslavBenzoni", "divasGusteglata") { Id = 1 });
             modelBuilder.Entity<User>().HasData(new User("Vatroslav","Lisinski", DateTime.Now, "ignacijefuchs@gmail.com", Gender.Male, Role.Basic, "ignacijeFux", "goriArena123") { Id = 2 });

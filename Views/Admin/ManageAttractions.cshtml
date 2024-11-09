@@ -1,0 +1,72 @@
+﻿@using WayFarer.Model
+@using WayFarer.Model.Enum
+@model IEnumerable<Attraction>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Attractions</title>
+    <link rel="stylesheet" href="~/css/manageAttractionsStyle.css">
+</head>
+<body>
+<section id="attractions-management">
+    <div class="actions-header">
+        <h2>Manage Attractions</h2>
+        <button class="add-attraction-btn" onclick="window.location.href='@Url.Action("Add", "Attraction")'">Add New Attraction</button>
+    </div>
+
+    <div class="filter-sort-bar">
+        <label for="categoryFilter">Filter by Category:</label>
+        <select id="categoryFilter" onchange="applyFilters()">
+            <option value="">All</option>
+            @foreach (Category category in Enum.GetValues(typeof(Category)))
+            {
+                <option value="@category">@category</option>
+            }
+        </select>
+
+        <label for="sortOption">Sort by:</label>
+        <select id="sortOption" onchange="applyFilters()">
+            <option value="">Default</option>
+            <option value="PriceAsc">Price (Low to High)</option>
+            <option value="PriceDesc">Price (High to Low)</option>
+            <option value="RatingAsc">Rating (Low to High)</option>
+            <option value="RatingDesc">Rating (High to Low)</option>
+        </select>
+    </div>
+
+    <table class="attractions-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Rating</th>
+                <th>City</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @await Html.PartialAsync("_FilterTableAttractions", Model)
+        </tbody>
+    </table>
+</section>
+</body>
+<script>
+ function applyFilters() {
+    const categoryFilter = document.getElementById("categoryFilter").value;
+    const sortOption = document.getElementById("sortOption").value;
+
+    fetch(`@Url.Action("FilterTableAttractions", "Admin")?categoryFilter=${categoryFilter}&sortOption=${sortOption}`, {
+        method: 'GET',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(response => response.text())
+    .then(html => {
+        document.querySelector('.attractions-table tbody').innerHTML = html;
+    })
+    .catch(error => console.error('Error fetching filtered data:', error));
+}
+</script>
