@@ -14,7 +14,7 @@ namespace WayFarer.Model
         public string? Image { get; set; }
 
         [ForeignKey("City")]
-        public int cityId { get; set; }
+        public int CityId { get; set; }
         public virtual City? City { get; set; }
 
         public virtual ICollection<Review>? Reviews { get; set; }

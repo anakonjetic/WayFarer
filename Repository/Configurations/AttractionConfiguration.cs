@@ -27,7 +27,7 @@ namespace WayFarer.Repository.Configurations
             builder.Property(p => p.Image)
                .HasMaxLength(4000);
 
-            builder.Property(p => p.cityId)
+            builder.Property(p => p.CityId)
                .IsRequired();
 
             builder.Ignore(p => p.City);
