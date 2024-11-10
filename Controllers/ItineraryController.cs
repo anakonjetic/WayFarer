@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using WayFarer.Model;
 using WayFarer.Repository;
 
@@ -18,25 +19,8 @@ namespace WayFarer.Controllers
         public IActionResult Details(int id)
         {
             var itinerary = _dbContext.Itinerary
-                .Include(i => i.City)             // Uključivanje povezane `City` za Itinerary
-                .ThenInclude(c => c.Attractions)  // Uključivanje Attractions koji pripadaju tom `City`
-                .FirstOrDefault(i => i.Id == id); // Dohvaćanje itinerara prema Id
-
-            if (itinerary == null)
-            {
-                return NotFound();
-            }
-
-            // Specify the exact path for the view in the "User" folder
-            return View("~/Views/User/ItineraryDetails.cshtml", itinerary);
-        }
-
-        // Show itinerary edit form
-        public IActionResult Edit(int id)
-        {
-            var itinerary = _dbContext.Itinerary
-                .Include(i => i.City)             // Uključivanje povezane `City` za Itinerary
-                .ThenInclude(c => c.Attractions)  // Uključivanje Attractions koji pripadaju tom `City`
+                .Include(i => i.City)
+                .ThenInclude(c => c.Attractions)
                 .FirstOrDefault(i => i.Id == id);
 
             if (itinerary == null)
@@ -44,11 +28,70 @@ namespace WayFarer.Controllers
                 return NotFound();
             }
 
-            // Specify the exact path for the view in the "User" folder
-            return View("~/Views/User/ItineraryEdit.cshtml", itinerary);
+            return View("~/Views/User/ItineraryDetails.cshtml", itinerary);
+        }
+
+        // Show itinerary create page
+        [HttpGet]
+        public IActionResult Create()
+        {
+            var model = new ItineraryFormViewModel
+            {
+                Cities = _dbContext.City.ToList()
+            };
+
+            return View("~/Views/User/ItineraryCreate.cshtml", model);
+        }
+
+        // Create itinerary
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(ItineraryFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.Cities = _dbContext.City.ToList();
+                return View("~/Views/User/ItineraryCreate.cshtml", model);
+            }
+
+            // get userId from user which is currently logged, in from session
+            var userId = HttpContext.Session.GetInt32("UserId");
+
+            if (!userId.HasValue)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            var itinerary = new Itinerary
+            {
+                StartDate = model.StartDate,
+                EndDate = model.EndDate,
+                TotalPrice = model.TotalPrice,
+                CityId = model.CityId,
+                UserId = (int)userId
+            };
+
+            _dbContext.Itinerary.Add(itinerary);
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
 
         // Edit itinerary
+        public IActionResult Edit(int id)
+        {
+            var itinerary = _dbContext.Itinerary
+                .Include(i => i.City)
+                .FirstOrDefault(i => i.Id == id);
+
+            if (itinerary == null)
+            {
+                return NotFound();
+            }
+
+            return View("~/Views/User/ItineraryEdit.cshtml", itinerary);
+        }
+
         [HttpPost]
         public IActionResult Edit(int id, Itinerary updatedItinerary)
         {
