@@ -253,7 +253,7 @@ namespace WayFarer.Controllers
 
 
         [HttpGet]
-        public IActionResult FilterTableUsers(string roleFilter, string sortOption, bool? isActiveFilter)
+        public IActionResult FilterTableUsers(string roleFilter, string sortOption, string isActiveFilter)
         {
             var users = _dbContext.User.AsQueryable();
 
@@ -262,9 +262,14 @@ namespace WayFarer.Controllers
                 users = users.Where(u => u.Role == roleEnum);
             }
 
-            if (isActiveFilter.HasValue)
+            // Check if the isActiveFilter value is correctly parsed
+            if (!string.IsNullOrEmpty(isActiveFilter) && bool.TryParse(isActiveFilter, out var isActive))
             {
-                users = users.Where(u => u.IsActive == isActiveFilter.Value);
+                users = users.Where(u => u.IsActive == isActive);
+            }
+            else
+            {
+                Console.WriteLine("isActiveFilter is null or invalid"); // Add this for debugging
             }
 
             users = sortOption switch
@@ -278,6 +283,7 @@ namespace WayFarer.Controllers
 
             return PartialView("_FilterTableUsers", users.ToList());
         }
+
 
 
         public IActionResult ManageUsers(string roleFilter, string sortOption)

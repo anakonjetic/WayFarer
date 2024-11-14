@@ -9,7 +9,7 @@
         <td>@user.Email</td>
         <td>@user.Username</td>
         <td>
-            <select onchange="changeUserRole(@user.Id, this.value)">
+            <select class="filter-sort-bar" onchange="changeUserRole(@user.Id, this.value)">
                 @* Manually control the "selected" attribute *@
                 <option value="Administrator" selected="@(user.Role == Role.Administrator ? "selected" : null)">Administrator</option>
                 <option value="Basic" selected="@(user.Role == Role.Basic ? "selected" : null)">Basic</option>

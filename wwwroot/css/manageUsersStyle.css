@@ -87,6 +87,24 @@ body {
         background-color: #f1f1f1;
     }
 
+    .users-table select {
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        background-color: #f8fafc;
+        color: #333;
+        font-size: 1rem;
+        cursor: pointer;
+        appearance: none; /* Hide default arrow for consistency */
+        -webkit-appearance: none; /* Safari support */
+        -moz-appearance: none; /* Firefox support */
+    }
+
+        .users-table select:focus {
+            outline: none;
+            border-color: #aaa;
+        }
+
 button {
     padding: 6px 12px;
     font-size: 0.9rem;
