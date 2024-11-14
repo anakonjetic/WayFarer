@@ -1,0 +1,412 @@
+﻿/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+}
+
+.section {
+    padding: 2rem;
+    background-color: #f0f0f0; /* Light grey background */
+    margin-bottom: 1rem;
+    border-radius: 10px;
+}
+
+h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h2 span {
+    font-size: 1.5rem;
+}
+
+.btn {
+    background-color: #6c757d; /* Grey background */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #5a6268;
+}
+
+.itinerary-details-page {
+    background-color: #f0f0f0; /* Light grey background for entire page */
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.itinerary-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 28px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.city-name {
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 1px;
+}
+
+.edit-delete-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.edit-delete-icons a,
+.edit-delete-icons button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.edit-delete-icons i {
+    font-size: 22px;
+    color: #333;
+}
+
+.edit-icon {
+    border: 2px solid #333;
+    border-radius: 20%;
+    padding: 5px;
+}
+
+.edit-icon:hover {
+    border-color: #848484; /* Light grey border */
+    background-color: #848484;
+}
+
+.edit-delete-icons i:hover {
+    color: #333;
+}
+
+.itinerary-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.itinerary-info {
+    flex-grow: 1;
+    padding-right: 30px;
+}
+
+.itinerary-info p {
+    font-size: 18px;
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+/* City image styling */
+.image-container img {
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Attractions list styling */
+.attractions h4 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.attractions ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.attractions li {
+    font-size: 16px;
+    margin: 8px 0;
+    transition: transform 0.3s ease;
+}
+
+.attractions li:hover {
+    transform: translateX(5px);
+    color: #007bff;
+}
+
+.delete-btn {
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #e04d41;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    width: 500px;
+    text-align: center;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.popup-buttons button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.confirm-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}
+
+.confirm-btn:hover {
+    background-color: #c82333;
+}
+
+.cancel-btn {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+.popup-buttons .cancel-btn {
+    margin-left: 10px;
+}
+
+.edit-itinerary-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 40px auto;
+    box-sizing: border-box;
+}
+
+.edit-itinerary-container h2 {
+    font-size: 32px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+}
+
+.form-control:focus {
+    border-color: #6c757d;
+    background-color: #fff;
+    outline: none;
+}
+
+.edit-itinerary-container .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.edit-itinerary-container .cancel-btn {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.edit-itinerary-container .cancel-btn:hover {
+    background-color: #e0e0e0;
+    border-color: #ccc;
+}
+
+.edit-itinerary-container .save-btn {
+    background-color: #6c757d;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.edit-itinerary-container .save-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    .edit-itinerary-container {
+        padding: 20px;
+    }
+
+    .form-control {
+        padding: 10px;
+    }
+
+    .btn {
+        padding: 10px;
+    }
+}
+
+.create-itinerary-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 40px auto;
+    box-sizing: border-box;
+}
+
+.create-itinerary-container h2 {
+    font-size: 32px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.create-itinerary-container .form-group {
+    margin-bottom: 20px;
+}
+
+.create-itinerary-container .form-group label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.create-itinerary-container .form-control {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+}
+
+.create-itinerary-container .form-control:focus {
+    border-color: #6c757d;
+    background-color: #fff;
+    outline: none;
+}
+
+.create-itinerary-container .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.create-itinerary-container .cancel-btn {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.create-itinerary-container .cancel-btn:hover {
+    background-color: #e0e0e0;
+    border-color: #ccc;
+}
+
+.create-itinerary-container .save-btn {
+    background-color: #6c757d;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.create-itinerary-container .save-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Back to Homepage Button */
+.back-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: 2px solid #333;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #d9d9d9;
+    color: #000;
+    border-color: #999;
+}

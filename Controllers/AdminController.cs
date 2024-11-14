@@ -129,7 +129,7 @@ namespace WayFarer.Controllers
 
             if (cityFilter.HasValue)
             {
-                attractions = attractions.Where(a => a.cityId == cityFilter.Value);
+                attractions = attractions.Where(a => a.CityId == cityFilter.Value);
             }
 
             var sortedAttractions = attractions.AsEnumerable();
@@ -164,7 +164,7 @@ namespace WayFarer.Controllers
 
             if (cityFilter.HasValue)
             {
-                attractions = attractions.Where(a => a.cityId == cityFilter.Value);
+                attractions = attractions.Where(a => a.CityId == cityFilter.Value);
             }
 
             attractions = sortOption switch

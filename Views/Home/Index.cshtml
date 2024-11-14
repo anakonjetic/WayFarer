@@ -11,7 +11,6 @@
 <body>
 
     <!-- My Itineraries Section -->
-    <!-- My Itineraries Section -->
     <section id="itinerari" class="section">
         <h2>My Itineraries <button class="btn" onclick="kreirajItinerar()">+ New Itinerary </button></h2>
         <div class="scroll-container">
@@ -36,7 +35,7 @@
                                 <div class="card-info">
                                     <h3>@item.City.Name</h3>
                                     <p><strong>Dates:</strong> @item.StartDate.ToString("dd.MM.yyyy.") - @item.EndDate.ToString("dd.MM.yyyy.")</p>
-                                    <p><strong>Budget:</strong> $@item.TotalPrice</p>
+                                    <p><strong>Budget:</strong> @item.TotalPrice€</p>
                                 </div>
                             </div>
                         </a>
@@ -71,7 +70,6 @@
             <button class="scroll-btn right" onclick="scrollRight('city-scroll')">&gt;</button>
         </div>
     </section>
-
 
     <script>
         // Scroll content left

@@ -20,14 +20,5 @@ namespace WayFarer.Model
         public virtual City? City { get; set; }
 
         public virtual ICollection<Attraction>? Attractions { get; set; }
-
-      /*  public Itinerary(DateTime startDate, DateTime endDate, int userId, decimal totalPrice, int cityId)
-        {
-            StartDate = startDate;
-            EndDate = endDate;
-            this.UserId = userId;
-            TotalPrice = totalPrice;
-            this.CityId = cityId;
-        }*/
     }
 }

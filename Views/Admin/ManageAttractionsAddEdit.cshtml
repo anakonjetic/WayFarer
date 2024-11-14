@@ -30,7 +30,7 @@
         <label for="City">City:</label>
         <input type="text" id="citySearchInput" value="@Model.City?.Name" oninput="searchCity()" placeholder="Start typing to search..." required />
         <ul id="citySuggestions" style="display: none; list-style: none; padding: 0; border: 1px solid #ddd;"></ul>
-        <input type="hidden" asp-for="cityId" id="selectedCityId" value="@Model.City?.Id" />
+        <input type="hidden" asp-for="CityId" id="selectedCityId" value="@Model.City?.Id" />
 
         <label for="ImageUrl">Image URL:</label>
         <input type="text" asp-for="Image" id="imageUrlInput" placeholder="Enter image URL" onload="previewImage()" oninput="previewImage()" />

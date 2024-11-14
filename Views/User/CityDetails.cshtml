@@ -1,0 +1,79 @@
+﻿@model WayFarer.Model.City
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Details - @Model.Name</title>
+    <link rel="stylesheet" href="~/css/cityStyle.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <div class="city-details-page">
+            <div class="city-header">
+                <h2 class="city-title">
+                    <span class="city-name">@Model.Name</span>
+                </h2>
+                <!-- Back to Homepage Button -->
+                <a href="/" class="back-button">&lt; Back to Homepage</a>
+            </div>
+
+            <div class="city-details">
+                <div class="city-info">
+                    <p><strong>Description:</strong> @Model.Description</p>
+                </div>
+                <div class="image-container">
+                    <img src="@Model.Image" alt="@Model.Name">
+                </div>
+            </div>
+
+            <div class="attractions">
+                <h4>Attractions:</h4>
+                <ul>
+                    @foreach (var attraction in Model.Attractions)
+                    {
+                        <li>@attraction.Name</li>
+                    }
+                </ul>
+            </div>
+
+            <div class="reviews">
+                <h4>Reviews:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Reviewer</th>
+                            <th>Rating</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Reviews.Any())
+                        {
+                            @foreach (var review in Model.Reviews)
+                            {
+                                <tr>
+                                    <td>@review.User?.Name @review.User?.Surname</td>
+                                    <td>@review.Rating</td>
+                                    <td>@review.Comment</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="3" class="no-reviews-message">There are no reviews yet for this city.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
