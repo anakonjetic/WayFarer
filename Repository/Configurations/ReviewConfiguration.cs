@@ -20,13 +20,13 @@ namespace WayFarer.Repository.Configurations
             builder.Property(p => p.Rating)
                .IsRequired();
 
-            builder.Property(p => p.userId)
+            builder.Property(p => p.UserId)
                 .IsRequired();
 
-            builder.Property(p => p.cityId)
+            builder.Property(p => p.CityId)
                 .IsRequired();
 
-            builder.Property(p => p.attractionId)
+            builder.Property(p => p.AttractionId)
                 .IsRequired();
 
             builder.Ignore(p => p.User);

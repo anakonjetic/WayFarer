@@ -11,22 +11,22 @@ namespace WayFarer.Model
         public int Rating { get; set; }
 
         [ForeignKey("User")]
-        public int userId { get; set; }
+        public int UserId { get; set; }
         public virtual User? User { get; set; }
 
         [ForeignKey("City")]
-        public int cityId { get; set; }
+        public int CityId { get; set; }
         public virtual City? City { get; set; }
 
         [ForeignKey("Attraction")]
-        public int attractionId { get; set; }
+        public int AttractionId { get; set; }
         public virtual Attraction? Attraction { get; set; }
 
-        public Review(string comment, int rating, int userId)
+        /* public Review(string comment, int rating, int userId)
         {
             Comment = comment;
             Rating = rating;
             this.userId = userId;
-        }
+        } */
     }
 }
