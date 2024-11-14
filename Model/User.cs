@@ -16,11 +16,13 @@ namespace WayFarer.Model
         public string Email { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public bool IsActive { get; set; }
 
         public virtual ICollection<Itinerary>? Itineraries { get; set; }
         public virtual ICollection<Review>? Reviews { get; set; }
 
-        public User(string name, string surname, DateTime dateOfBirth, string email, Gender gender, Role role, string username, string password)
+        public User() { }
+        public User(string name, string surname, DateTime dateOfBirth, string email, Gender gender, Role role, string username, string password, bool isActive)
         {
             Name = name;
             Surname = surname;
@@ -30,6 +32,7 @@ namespace WayFarer.Model
             Email = email;
             Username = username;
             Password = password;
+            IsActive = isActive;
         }
     }
 }

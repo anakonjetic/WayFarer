@@ -59,8 +59,8 @@ namespace WayFarer.Repository
                 .WithMany(a => a.Reviews)
                 .HasForeignKey(r => r.AttractionId);
 
-            modelBuilder.Entity<User>().HasData(new User("Srećko", "Korkut", DateTime.Now, "skorkut@gmail.com", Gender.Male, Role.Administrator, "caslavBenzoni", "divasGusteglata") { Id = 1 });
-            modelBuilder.Entity<User>().HasData(new User("Vatroslav", "Lisinski", DateTime.Now, "ignacijefuchs@gmail.com", Gender.Male, Role.Basic, "ignacijeFux", "goriArena123") { Id = 2 });
+            modelBuilder.Entity<User>().HasData(new User("Srećko", "Korkut", DateTime.Now, "skorkut@gmail.com", Gender.Male, Role.Administrator, "caslavBenzoni", "divasGusteglata", true) { Id = 1 });
+            modelBuilder.Entity<User>().HasData(new User("Vatroslav", "Lisinski", DateTime.Now, "ignacijefuchs@gmail.com", Gender.Male, Role.Basic, "ignacijeFux", "goriArena123", true) { Id = 2 });
             modelBuilder.Entity<City>().HasData(new City{ Id = 1, Name = "Zagreb", Description = "Zagreb je najljepši grad!", Image = "https://wallpapercave.com/wp/wp2333635.jpg"});
             modelBuilder.Entity<City>().HasData(new City{ Id = 2, Name = "Pariz", Description = "Pariz je grad ljubavi!", Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT79lMmLbkyF2Dj2u1pNmWrjlUZfAjDQak0VA&s" });
             modelBuilder.Entity<City>().HasData(new City{ Id = 3, Name = "Gospić", Description = "Gospić je najveći grad u Europi!", Image = "https://www.mare-vrbnik.com/public/uploads/photos/articles/_gospic.jpg" });

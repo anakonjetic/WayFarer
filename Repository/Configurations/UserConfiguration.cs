@@ -44,6 +44,9 @@ namespace WayFarer.Repository.Configurations
                .HasMaxLength(30)
                .IsRequired();
 
+            builder.Property(p => p.IsActive)
+                .IsRequired();
+
             builder.Ignore(p => p.Itineraries);
             builder.Ignore(p => p.Reviews);
         }

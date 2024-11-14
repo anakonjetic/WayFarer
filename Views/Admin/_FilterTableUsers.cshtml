@@ -1,0 +1,25 @@
+﻿@using WayFarer.Model.Enum
+@model IEnumerable<WayFarer.Model.User>
+
+@foreach (var user in Model)
+{
+    <tr>
+        <td>@user.Name</td>
+        <td>@user.Surname</td>
+        <td>@user.Email</td>
+        <td>@user.Username</td>
+        <td>
+            <select class="filter-sort-bar" onchange="changeUserRole(@user.Id, this.value)">
+                @* Manually control the "selected" attribute *@
+                <option value="Administrator" selected="@(user.Role == Role.Administrator ? "selected" : null)">Administrator</option>
+                <option value="Basic" selected="@(user.Role == Role.Basic ? "selected" : null)">Basic</option>
+            </select>
+        </td>
+        <td>@(user.IsActive ? "Active" : "Inactive")</td>
+        <td>
+            <button onclick="toggleUserStatus(@user.Id)">
+                @(user.IsActive ? "Deactivate" : "Activate")
+            </button>
+        </td>
+    </tr>
+}
