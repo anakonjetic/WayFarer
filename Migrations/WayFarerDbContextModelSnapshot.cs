@@ -34,6 +34,9 @@ namespace WayFarer.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("int");
 
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Image")
                         .HasMaxLength(4000)
                         .HasColumnType("nvarchar(4000)");
@@ -46,12 +49,9 @@ namespace WayFarer.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("cityId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("cityId");
+                    b.HasIndex("CityId");
 
                     b.ToTable("Attraction", (string)null);
 
@@ -60,9 +60,9 @@ namespace WayFarer.Migrations
                         {
                             Id = 1,
                             Category = 4,
+                            CityId = 1,
                             Name = "Bitange i princeze",
-                            Price = 7m,
-                            cityId = 1
+                            Price = 7m
                         });
                 });
 
@@ -150,8 +150,8 @@ namespace WayFarer.Migrations
                         {
                             Id = 1,
                             CityId = 1,
-                            EndDate = new DateTime(2024, 11, 9, 19, 53, 46, 330, DateTimeKind.Local).AddTicks(4825),
-                            StartDate = new DateTime(2024, 11, 9, 19, 53, 46, 330, DateTimeKind.Local).AddTicks(4823),
+                            EndDate = new DateTime(2024, 11, 16, 15, 41, 49, 313, DateTimeKind.Local).AddTicks(408),
+                            StartDate = new DateTime(2024, 11, 16, 15, 41, 49, 313, DateTimeKind.Local).AddTicks(406),
                             TotalPrice = 0m,
                             UserId = 1
                         });
@@ -165,6 +165,12 @@ namespace WayFarer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AttractionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Comment")
                         .IsRequired()
                         .HasMaxLength(1000)
@@ -173,16 +179,16 @@ namespace WayFarer.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<int>("attractionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("cityId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("userId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AttractionId");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Review", (string)null);
 
@@ -190,11 +196,11 @@ namespace WayFarer.Migrations
                         new
                         {
                             Id = 1,
+                            AttractionId = 0,
+                            CityId = 0,
                             Comment = "Najbolje mjesto u gradu, uživali smo u noći pjesnika!",
                             Rating = 5,
-                            attractionId = 0,
-                            cityId = 0,
-                            userId = 1
+                            UserId = 0
                         });
                 });
 
@@ -253,7 +259,7 @@ namespace WayFarer.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2024, 11, 9, 19, 53, 46, 330, DateTimeKind.Local).AddTicks(4553),
+                            DateOfBirth = new DateTime(2024, 11, 16, 15, 41, 49, 313, DateTimeKind.Local).AddTicks(235),
                             Email = "skorkut@gmail.com",
                             Gender = 0,
                             IsActive = true,
@@ -266,7 +272,7 @@ namespace WayFarer.Migrations
                         new
                         {
                             Id = 2,
-                            DateOfBirth = new DateTime(2024, 11, 9, 19, 53, 46, 330, DateTimeKind.Local).AddTicks(4713),
+                            DateOfBirth = new DateTime(2024, 11, 16, 15, 41, 49, 313, DateTimeKind.Local).AddTicks(299),
                             Email = "ignacijefuchs@gmail.com",
                             Gender = 0,
                             IsActive = true,
@@ -282,7 +288,7 @@ namespace WayFarer.Migrations
                 {
                     b.HasOne("WayFarer.Model.City", "City")
                         .WithMany("Attractions")
-                        .HasForeignKey("cityId")
+                        .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -300,11 +306,50 @@ namespace WayFarer.Migrations
                     b.Navigation("City");
                 });
 
+            modelBuilder.Entity("WayFarer.Model.Review", b =>
+                {
+                    b.HasOne("WayFarer.Model.Attraction", "Attraction")
+                        .WithMany("Reviews")
+                        .HasForeignKey("AttractionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WayFarer.Model.City", "City")
+                        .WithMany("Reviews")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WayFarer.Model.User", "User")
+                        .WithMany("Reviews")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attraction");
+
+                    b.Navigation("City");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("WayFarer.Model.Attraction", b =>
+                {
+                    b.Navigation("Reviews");
+                });
+
             modelBuilder.Entity("WayFarer.Model.City", b =>
                 {
                     b.Navigation("Attractions");
 
                     b.Navigation("Itineraries");
+
+                    b.Navigation("Reviews");
+                });
+
+            modelBuilder.Entity("WayFarer.Model.User", b =>
+                {
+                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }
