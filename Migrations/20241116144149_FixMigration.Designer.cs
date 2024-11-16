@@ -12,8 +12,8 @@ using WayFarer.Repository;
 namespace WayFarer.Migrations
 {
     [DbContext(typeof(WayFarerDbContext))]
-    [Migration("20241110212550_UpdateAttributeNames")]
-    partial class UpdateAttributeNames
+    [Migration("20241116144149_FixMigration")]
+    partial class FixMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -152,8 +152,8 @@ namespace WayFarer.Migrations
                         {
                             Id = 1,
                             CityId = 1,
-                            EndDate = new DateTime(2024, 11, 10, 22, 25, 49, 597, DateTimeKind.Local).AddTicks(8241),
-                            StartDate = new DateTime(2024, 11, 10, 22, 25, 49, 597, DateTimeKind.Local).AddTicks(8238),
+                            EndDate = new DateTime(2024, 11, 16, 15, 41, 49, 313, DateTimeKind.Local).AddTicks(408),
+                            StartDate = new DateTime(2024, 11, 16, 15, 41, 49, 313, DateTimeKind.Local).AddTicks(406),
                             TotalPrice = 0m,
                             UserId = 1
                         });
@@ -226,6 +226,9 @@ namespace WayFarer.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -258,9 +261,10 @@ namespace WayFarer.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2024, 11, 10, 22, 25, 49, 597, DateTimeKind.Local).AddTicks(8043),
+                            DateOfBirth = new DateTime(2024, 11, 16, 15, 41, 49, 313, DateTimeKind.Local).AddTicks(235),
                             Email = "skorkut@gmail.com",
                             Gender = 0,
+                            IsActive = true,
                             Name = "Srećko",
                             Password = "divasGusteglata",
                             Role = 0,
@@ -270,9 +274,10 @@ namespace WayFarer.Migrations
                         new
                         {
                             Id = 2,
-                            DateOfBirth = new DateTime(2024, 11, 10, 22, 25, 49, 597, DateTimeKind.Local).AddTicks(8134),
+                            DateOfBirth = new DateTime(2024, 11, 16, 15, 41, 49, 313, DateTimeKind.Local).AddTicks(299),
                             Email = "ignacijefuchs@gmail.com",
                             Gender = 0,
+                            IsActive = true,
                             Name = "Vatroslav",
                             Password = "goriArena123",
                             Role = 1,
