@@ -24,10 +24,10 @@ namespace WayFarer.Repository.Configurations
                 .IsRequired();
 
             builder.Property(p => p.CityId)
-                .IsRequired();
+                .IsRequired(false);
 
             builder.Property(p => p.AttractionId)
-                .IsRequired();
+                .IsRequired(false);
 
             builder.Ignore(p => p.User);
             builder.Ignore(p => p.City);
