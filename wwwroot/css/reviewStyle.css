@@ -1,0 +1,102 @@
+﻿
+.create-review-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 40px auto;
+    box-sizing: border-box;
+}
+
+.create-review-container h2 {
+    font-size: 32px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.create-review-container .form-group {
+    margin-bottom: 20px;
+}
+
+.create-review-container .form-group label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.create-review-container .form-control {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+}
+
+.create-review-container .form-control:focus {
+    border-color: #6c757d;
+    background-color: #fff;
+    outline: none;
+}
+
+.create-review-container .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.create-review-container .cancel-btn {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.create-review-container .cancel-btn:hover {
+    background-color: #e0e0e0;
+    border-color: #ccc;
+}
+
+.create-review-container .save-btn {
+    background-color: #6c757d;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.create-review-container .save-btn:hover {
+    background-color: #5a6268;
+}
+
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 5px;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 2rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star-rating input:checked ~ label {
+    color: #f39c12;
+}
+
+.star-rating input:hover ~ label {
+    color: #f39c12;
+}

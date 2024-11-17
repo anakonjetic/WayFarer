@@ -52,10 +52,60 @@ h4 {
     margin-bottom: 10px;
 }
 
-ul {
-    list-style-type: disc;
-    padding-left: 20px;
+/* Attraction Grid */
+.attractions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
 }
+
+.attraction-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+    .attraction-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+.image-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+    }
+
+.attraction-card:hover .image-container img {
+    transform: scale(1.1);
+}
+
+.attraction-info {
+    padding: 15px;
+}
+
+    .attraction-info h5 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .attraction-info p {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+
+    .attraction-info strong {
+        font-weight: bold;
+    }
 
 /* Reviews Table Styling */
 .reviews table {
@@ -110,12 +160,20 @@ ul {
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
+    display: inline-block;
+    text-align: center;
 }
 
-.back-button:hover {
-    background-color: #d9d9d9;
-    color: #000;
-}
+    .back-button:hover {
+        background-color: #d9d9d9;
+        color: #000;
+    }
+
+    .back-button:active {
+        background-color: #bbb;
+        color: #333;
+    }
+
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
@@ -125,5 +183,14 @@ ul {
 
     .reviews table {
         font-size: 0.9rem;
+    }
+
+    .attraction-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .attraction-table th, .attraction-table td {
+        padding: 10px;
     }
 }

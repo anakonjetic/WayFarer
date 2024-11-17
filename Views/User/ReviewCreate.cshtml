@@ -1,0 +1,56 @@
+﻿@model WayFarer.Model.Review
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Review</title>
+    <link rel="stylesheet" href="~/css/reviewStyle.css">
+</head>
+<body>
+    <div class="create-review-container">
+        <h2>Create New Review for @ViewBag.CityName</h2>
+
+        <form asp-action="CreateReview" method="post">
+            @Html.AntiForgeryToken()
+
+            <!-- City ID (Hidden) -->
+            <input type="hidden" name="CityId" value="@Model.CityId" />
+            <input type="hidden" name="UserId" value="@Model.UserId" />
+
+            <!-- Star Rating -->
+            <div class="form-group">
+                <label>Rating*</label>
+                <div class="star-rating">
+                    <input type="radio" id="star5" name="Rating" value="5" required />
+                    <label for="star5" title="5 stars">☆</label>
+                    <input type="radio" id="star4" name="Rating" value="4" required />
+                    <label for="star4" title="4 stars">☆</label>
+                    <input type="radio" id="star3" name="Rating" value="3" required />
+                    <label for="star3" title="3 stars">☆</label>
+                    <input type="radio" id="star2" name="Rating" value="2" required />
+                    <label for="star2" title="2 stars">☆</label>
+                    <input type="radio" id="star1" name="Rating" value="1" required />
+                    <label for="star1" title="1 star">☆</label>
+                </div>
+            </div>
+
+            <!-- Comment -->
+            <div class="form-group">
+                <label for="Comment">Comment*</label>
+                <textarea id="Comment" name="Comment" class="form-control" rows="4" required></textarea>
+            </div>
+
+            <!-- Itinerary ID (Hidden) -->
+            <input type="hidden" name="itineraryId" value="@ViewBag.ItineraryId" />
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="button" class="btn cancel-btn" onclick="window.history.back();">Cancel</button>
+                <button type="submit" class="btn save-btn">Submit Review</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
