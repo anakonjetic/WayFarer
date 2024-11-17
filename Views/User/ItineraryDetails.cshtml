@@ -16,15 +16,21 @@
         <div class="itinerary-details-page">
             <h2 class="itinerary-title">
                 <span class="city-name">@Model.City.Name</span>
+
+                <!-- Show edit and delete icons only if the itinerary is not finished -->
                 <span class="edit-delete-icons">
-                    <a href="@Url.Action("Edit", "Itinerary", new { id = Model.Id })" class="edit-icon">
-                        <i class="fas fa-pencil-alt"></i>
-                    </a>
-                    <button class="btn delete-btn" onclick="confirmDelete(@Model.Id)">
-                        <i class="fas fa-trash"></i>
-                    </button>
+                    @if (Model.EndDate > DateTime.Now)
+                    {
+                        <a href="@Url.Action("Edit", "Itinerary", new { id = Model.Id })" class="edit-icon">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                        <button class="btn delete-btn" onclick="confirmDelete(@Model.Id)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    }
                     <a href="/" class="back-button" style="border: 2px solid #333; color: #333; line-height: 1.5;">&lt; Back to Homepage</a>
                 </span>
+                
             </h2>
 
             <div class="itinerary-details">
