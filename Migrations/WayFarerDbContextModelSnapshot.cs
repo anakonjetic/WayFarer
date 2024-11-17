@@ -150,8 +150,8 @@ namespace WayFarer.Migrations
                         {
                             Id = 1,
                             CityId = 1,
-                            EndDate = new DateTime(2024, 11, 16, 15, 41, 49, 313, DateTimeKind.Local).AddTicks(408),
-                            StartDate = new DateTime(2024, 11, 16, 15, 41, 49, 313, DateTimeKind.Local).AddTicks(406),
+                            EndDate = new DateTime(2024, 11, 17, 16, 39, 39, 285, DateTimeKind.Local).AddTicks(8510),
+                            StartDate = new DateTime(2024, 11, 17, 16, 39, 39, 285, DateTimeKind.Local).AddTicks(8508),
                             TotalPrice = 0m,
                             UserId = 1
                         });
@@ -196,11 +196,11 @@ namespace WayFarer.Migrations
                         new
                         {
                             Id = 1,
-                            AttractionId = 0,
-                            CityId = 0,
+                            AttractionId = 1,
+                            CityId = 1,
                             Comment = "Najbolje mjesto u gradu, uživali smo u noći pjesnika!",
                             Rating = 5,
-                            UserId = 0
+                            UserId = 1
                         });
                 });
 
@@ -259,7 +259,7 @@ namespace WayFarer.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2024, 11, 16, 15, 41, 49, 313, DateTimeKind.Local).AddTicks(235),
+                            DateOfBirth = new DateTime(2024, 11, 17, 16, 39, 39, 285, DateTimeKind.Local).AddTicks(8389),
                             Email = "skorkut@gmail.com",
                             Gender = 0,
                             IsActive = true,
@@ -272,7 +272,7 @@ namespace WayFarer.Migrations
                         new
                         {
                             Id = 2,
-                            DateOfBirth = new DateTime(2024, 11, 16, 15, 41, 49, 313, DateTimeKind.Local).AddTicks(299),
+                            DateOfBirth = new DateTime(2024, 11, 17, 16, 39, 39, 285, DateTimeKind.Local).AddTicks(8444),
                             Email = "ignacijefuchs@gmail.com",
                             Gender = 0,
                             IsActive = true,
@@ -289,7 +289,7 @@ namespace WayFarer.Migrations
                     b.HasOne("WayFarer.Model.City", "City")
                         .WithMany("Attractions")
                         .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("City");
@@ -300,7 +300,7 @@ namespace WayFarer.Migrations
                     b.HasOne("WayFarer.Model.City", "City")
                         .WithMany("Itineraries")
                         .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("City");
@@ -311,19 +311,19 @@ namespace WayFarer.Migrations
                     b.HasOne("WayFarer.Model.Attraction", "Attraction")
                         .WithMany("Reviews")
                         .HasForeignKey("AttractionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("WayFarer.Model.City", "City")
                         .WithMany("Reviews")
                         .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("WayFarer.Model.User", "User")
                         .WithMany("Reviews")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Attraction");

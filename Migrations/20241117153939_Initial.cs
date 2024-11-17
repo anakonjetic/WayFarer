@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WayFarer.Migrations
 {
-    public partial class FixMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,7 +65,7 @@ namespace WayFarer.Migrations
                         column: x => x.CityId,
                         principalTable: "City",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -88,7 +88,7 @@ namespace WayFarer.Migrations
                         column: x => x.CityId,
                         principalTable: "City",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -111,19 +111,19 @@ namespace WayFarer.Migrations
                         column: x => x.AttractionId,
                         principalTable: "Attraction",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Review_City_CityId",
                         column: x => x.CityId,
                         principalTable: "City",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Review_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -137,17 +137,12 @@ namespace WayFarer.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Review",
-                columns: new[] { "Id", "AttractionId", "CityId", "Comment", "Rating", "UserId" },
-                values: new object[] { 1, 0, 0, "Najbolje mjesto u gradu, uživali smo u noći pjesnika!", 5, 0 });
-
-            migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "DateOfBirth", "Email", "Gender", "IsActive", "Name", "Password", "Role", "Surname", "Username" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 11, 16, 15, 41, 49, 313, DateTimeKind.Local).AddTicks(235), "skorkut@gmail.com", 0, true, "Srećko", "divasGusteglata", 0, "Korkut", "caslavBenzoni" },
-                    { 2, new DateTime(2024, 11, 16, 15, 41, 49, 313, DateTimeKind.Local).AddTicks(299), "ignacijefuchs@gmail.com", 0, true, "Vatroslav", "goriArena123", 1, "Lisinski", "ignacijeFux" }
+                    { 1, new DateTime(2024, 11, 17, 16, 39, 39, 285, DateTimeKind.Local).AddTicks(8389), "skorkut@gmail.com", 0, true, "Srećko", "divasGusteglata", 0, "Korkut", "caslavBenzoni" },
+                    { 2, new DateTime(2024, 11, 17, 16, 39, 39, 285, DateTimeKind.Local).AddTicks(8444), "ignacijefuchs@gmail.com", 0, true, "Vatroslav", "goriArena123", 1, "Lisinski", "ignacijeFux" }
                 });
 
             migrationBuilder.InsertData(
@@ -158,7 +153,12 @@ namespace WayFarer.Migrations
             migrationBuilder.InsertData(
                 table: "Itinerary",
                 columns: new[] { "Id", "CityId", "EndDate", "StartDate", "TotalPrice", "UserId" },
-                values: new object[] { 1, 1, new DateTime(2024, 11, 16, 15, 41, 49, 313, DateTimeKind.Local).AddTicks(408), new DateTime(2024, 11, 16, 15, 41, 49, 313, DateTimeKind.Local).AddTicks(406), 0m, 1 });
+                values: new object[] { 1, 1, new DateTime(2024, 11, 17, 16, 39, 39, 285, DateTimeKind.Local).AddTicks(8510), new DateTime(2024, 11, 17, 16, 39, 39, 285, DateTimeKind.Local).AddTicks(8508), 0m, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Review",
+                columns: new[] { "Id", "AttractionId", "CityId", "Comment", "Rating", "UserId" },
+                values: new object[] { 1, 1, 1, "Najbolje mjesto u gradu, uživali smo u noći pjesnika!", 5, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Attraction_CityId",
