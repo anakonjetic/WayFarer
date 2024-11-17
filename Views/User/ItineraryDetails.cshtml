@@ -61,6 +61,26 @@
         </div>
     </div>
 
+      <div class="weather-table-container">
+        <table class="weather-table">
+            <tbody>
+                <tr>
+                    @foreach (var forecast in ((WayFarer.Controllers.Services.WeatherData)ViewData["WeatherData"]).Forecasts)
+                    {
+                        <td>
+                            <p><strong>@forecast.Date.ToString("dd.MM.yyyy")</strong></p>
+                            <img src="@forecast.Icon" alt="@forecast.WeatherDescription" />
+                            <p>@forecast.Temperature°C</p>
+                            <p>@forecast.WeatherDescription</p>
+                        </td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
     <script>
         let itineraryIdToDelete;
 
