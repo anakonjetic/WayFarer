@@ -214,7 +214,7 @@ namespace WayFarer.Controllers
             return RedirectToAction("ManageAttractions");
         }
 
-        [HttpPost]
+   
         public IActionResult ManageAttractionsDelete(int id)
         {
             var attraction = _dbContext.Attraction.Find(id);

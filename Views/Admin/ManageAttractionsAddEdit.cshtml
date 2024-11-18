@@ -7,19 +7,20 @@
     <title>Manage Attractions</title>
     <link rel="stylesheet" href="~/css/manageAttractionsStyle.css">
 </head>
+
 <section id="add-edit-attraction">
     <h2>@(Model.Id == 0 ? "Add New Attraction" : "Edit Attraction")</h2>
 
     <form asp-action="@(Model.Id == 0 ? "ManageAttractionsAdd" : "ManageAttractionsEdit")" asp-controller="Admin" method="post">
         <input type="hidden" asp-for="Id" />
 
-        <label for="Name">Name:</label>
+        <label for="Name">Name*</label>
         <input type="text" asp-for="Name" required />
 
-        <label for="Price">Price:</label>
+        <label for="Price">Price*</label>
         <input type="number" asp-for="Price" step="0.5" required />
 
-        <label for="Category">Category:</label>
+        <label for="Category">Category*</label>
         <select asp-for="Category" required>
             @foreach (Category category in Enum.GetValues(typeof(Category)))
             {
@@ -27,21 +28,27 @@
             }
         </select>
 
-        <label for="City">City:</label>
+        <label for="City">City*</label>
         <input type="text" id="citySearchInput" value="@Model.City?.Name" oninput="searchCity()" placeholder="Start typing to search..." required />
         <ul id="citySuggestions" style="display: none; list-style: none; padding: 0; border: 1px solid #ddd;"></ul>
         <input type="hidden" asp-for="CityId" id="selectedCityId" value="@Model.City?.Id" />
 
-        <label for="ImageUrl">Image URL:</label>
+        <label for="ImageUrl">Image URL*</label>
         <input type="text" asp-for="Image" id="imageUrlInput" placeholder="Enter image URL" onload="previewImage()" oninput="previewImage()" />
 
         <div id="imagePreviewContainer">
             <img id="imagePreview" src="@Model.Image" alt="Image Preview" style="width: 100%; height: auto; display: none;" />
         </div>
 
-        <button type="submit">@("Save")</button>
+        <!-- Form Actions -->
+        <div class="form-actions">
+            <button type="button" class="cancel-btn" onclick="window.history.back();">Cancel</button>
+            <button type="submit" class="save-btn">@("Save")</button>
+        </div>
     </form>
 </section>
+
+<footer></footer>
 
 <script>
  function searchCity() {

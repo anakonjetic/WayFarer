@@ -8,33 +8,33 @@
 /* Glavni stil sekcije za upravljanje gradovima */
 .actions-header {
     display: flex;
-    justify-content: center; /* Razdvaja naslov i dugme */
+    justify-content: center; /* Razdvaja naslov i button */
     align-items: center; /* Poravnava elemente vertikalno u sredinu */
     margin-bottom: 1.5rem;
     gap: 3rem;
 }
 
-    .actions-header h2 {
-        font-size: 1.5rem;
-        color: #333;
-        text-transform: capitalize;
-    }
+.actions-header h2 {
+    font-size: 1.5rem;
+    color: #333;
+    text-transform: capitalize;
+}
 
-/* Stil za dugme dodavanja novog grada */
+/* Stil za button dodavanja novog grada */
 .add-city-btn {
     padding: 0.5rem 1rem;
     font-size: 1rem;
-    color: #fff; /* White text */
-    background-color: #808080; /* Grey background */
+    color: #fff;
+    background-color: #808080;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-    .add-city-btn:hover {
-        background-color: #6c6c6c; /* Darker grey on hover */
-    }
+.add-city-btn:hover {
+    background-color: #6c6c6c; 
+}
 
 /* Stil za listu gradova */
 .city-list {
@@ -55,9 +55,9 @@
     transition: transform 0.3s;
 }
 
-    .city-card:hover {
-        transform: translateY(-5px);
-    }
+.city-card:hover {
+    transform: translateY(-5px);
+}
 
 /* Stil slike grada */
 .city-image-container {
@@ -66,27 +66,27 @@
     overflow: hidden;
 }
 
-    .city-image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+.city-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 /* Informacije o gradu */
 .city-info {
     padding: 1rem;
 }
 
-    .city-info h3 {
-        font-size: 1.25rem;
-        color: #333;
-        margin-bottom: 0.5rem;
-    }
+.city-info h3 {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
 
-    .city-info p {
-        font-size: 1rem;
-        color: #666;
-    }
+.city-info p {
+    font-size: 1rem;
+    color: #666;
+}
 
 /* Akcije na kartici grada */
 .city-actions {
@@ -102,16 +102,16 @@
     padding: 5px;
 }
 
-    .edit-icon:hover {
-        border-color: #848484; /* Light grey border */
-        background-color: #848484;
-    }
+.edit-icon:hover {
+    border-color: #848484;
+    background-color: #848484;
+}
 
-    #city-form h2 {
-        color: #333;
-        font-size: 1.75rem;
-        margin-bottom: 1.5rem;
-    }
+#city-form h2 {
+    color: #333;
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+}
 
 /* Form field styling */
 .form-group {
@@ -120,27 +120,27 @@
     flex-direction: column;
 }
 
-    .form-group label {
-        color: #555;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-    }
+.form-group label {
+    color: #555;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
 
-    .form-group input[type="text"],
-    .form-group textarea {
-        padding: 0.75rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 1rem;
-        color: #333;
-        transition: border-color 0.2s ease-in-out;
-    }
+.form-group input[type="text"],
+.form-group textarea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.2s ease-in-out;
+}
 
-        .form-group input[type="text"]:focus,
-        .form-group textarea:focus {
-            border-color: #007bff;
-            outline: none;
-        }
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
 
 textarea {
     resize: vertical;
@@ -168,11 +168,11 @@ textarea {
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
 }
 
-    .popup-content h3 {
-        font-size: 24px;
-        margin-bottom: 20px;
-        font-weight: 600;
-    }
+.popup-content h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
 
 .popup-buttons {
     display: flex;
@@ -181,13 +181,13 @@ textarea {
     margin-top: 30px;
 }
 
-    .popup-buttons button {
-        padding: 12px 25px;
-        font-size: 16px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
+.popup-buttons button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
 .confirm-btn {
     background-color: #dc3545;
@@ -195,9 +195,9 @@ textarea {
     border: none;
 }
 
-    .confirm-btn:hover {
-        background-color: #c82333;
-    }
+.confirm-btn:hover {
+    background-color: #c82333;
+}
 
 .cancel-btn {
     background-color: #6c757d;
@@ -205,9 +205,9 @@ textarea {
     border: none;
 }
 
-    .cancel-btn:hover {
-        background-color: #5a6268;
-    }
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
 
 .popup-buttons .cancel-btn {
     margin-left: 10px;
@@ -217,13 +217,14 @@ textarea {
     border-radius: 20%;
     padding: 5px;
     padding: 10px 15px;
+    padding: 10px 15px;
     border: none
 }
 
-    .edit-icon:hover {
-        border-color: #848484; /* Light grey border */
-        background-color: #848484;
-    }
+.edit-icon:hover {
+    border-color: #848484;
+    background-color: #848484;
+}
 
 .delete-icon {
     border: none;
@@ -233,9 +234,9 @@ textarea {
     transition: background-color 0.3s ease;
 }
 
-    .delete-icon:hover {
-        background-color: #ff6f61;
-    }
+.delete-icon:hover {
+    background-color: #ff6f61;
+}
 
 .edit-delete-icons i:hover {
     color: #333;
