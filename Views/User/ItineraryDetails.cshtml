@@ -13,63 +13,120 @@
 <body>
  
     <div class="container">
-        <div class="itinerary-details-page">
-            <h2 class="itinerary-title">
-                <span class="city-name">@Model.City.Name</span>
-
-                <!-- Show edit and delete icons only if the itinerary is not finished -->
-                <span class="edit-delete-icons">
-                    @if (Model.EndDate > DateTime.Now)
-                    {
-                        <a href="@Url.Action("Edit", "Itinerary", new { id = Model.Id })" class="edit-icon">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
-                        <button class="btn delete-btn" onclick="confirmDelete(@Model.Id)">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    }
-                    @if (Model.EndDate < DateTime.Now)
-                    {
-                        <a href="@Url.Action("CreateReview", "City", new { cityId = Model.City.Id, itineraryId = Model.Id })" class="custom-button" style="border: 2px solid #333; color: #333; line-height: 1.5;">
-                            Leave a review
-                        </a>
-                    }
-                    <a href="/" class="custom-button" style="border: 2px solid #333; color: #333; line-height: 1.5;">&lt; Back to Homepage</a>
-                </span>
-                
-            </h2>
-
-            <div class="itinerary-details">
-                <div class="itinerary-info">
-                    <p><strong>Start Date:</strong> @Model.StartDate.ToString("dd.MM.yyyy.")</p>
-                    <p><strong>End Date:</strong> @Model.EndDate.ToString("dd.MM.yyyy.")</p>
-                    <p><strong>Budget:</strong> @Model.TotalPrice€</p>
-                </div>
-                <div class="image-container">
-                    <img src="@Model.City.Image" alt="@Model.City.Name">
-                </div>
-            </div>
-
-            <div class="attractions">
-                <h4>Attractions:</h4>
-                <div class="attractions-grid">
-                    @foreach (var attraction in Model.City.Attractions)
-                    {
-                        <div class="attraction-card">
-                            <div class="image-container">
-                                <img src="@attraction.Image" alt="@attraction.Name">
-                            </div>
-                            <div class="attraction-info">
-                                <h5>@attraction.Name</h5>
-                                <p><strong>Category:</strong> @attraction.Category</p>
-                                <p><strong>Price:</strong> €@attraction.Price</p>
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
-
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'itinerary-details')">Itinerary Details</button>
+            <button class="tab-button" onclick="openTab(event, 'plan-your-trip')">Plan Your Trip</button>
         </div>
+
+        <!-- Tab 1: Itinerary Details -->
+        <div id="itinerary-details" class="tab-content active">
+            <div class="itinerary-details-page">
+                <h2 class="itinerary-title">
+                    <span class="city-name">@Model.City.Name</span>
+
+                    <!-- Show edit and delete icons only if the itinerary is not finished -->
+                    <span class="edit-delete-icons">
+                        @if (Model.EndDate > DateTime.Now)
+                        {
+                            <a href="@Url.Action("Edit", "Itinerary", new { id = Model.Id })" class="edit-icon">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <button class="btn delete-btn" onclick="confirmDelete(@Model.Id)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        }
+                        @if (Model.EndDate < DateTime.Now)
+                        {
+                            <a href="@Url.Action("CreateReview", "City", new { cityId = Model.City.Id, itineraryId = Model.Id })" class="custom-button" style="border: 2px solid #333; color: #333; line-height: 1.5;">
+                                Leave a review
+                            </a>
+                        }
+                        <a href="/" class="custom-button" style="border: 2px solid #333; color: #333; line-height: 1.5;">&lt; Back to Homepage</a>
+                    </span>
+                
+                </h2>
+
+                <div class="itinerary-details">
+                    <div class="itinerary-info">
+                        <p><strong>Start Date:</strong> @Model.StartDate.ToString("dd.MM.yyyy.")</p>
+                        <p><strong>End Date:</strong> @Model.EndDate.ToString("dd.MM.yyyy.")</p>
+                        <p><strong>Budget:</strong> @Model.TotalPrice€</p>
+                    </div>
+                    <div class="image-container">
+                        <img src="@Model.City.Image" alt="@Model.City.Name">
+                    </div>
+                </div>
+
+                <div class="attractions">
+                    <h4>Attractions:</h4>
+                    <div class="attractions-grid">
+                        @foreach (var attraction in Model.City.Attractions)
+                        {
+                            <div class="attraction-card">
+                                <div class="image-container">
+                                    <img src="@attraction.Image" alt="@attraction.Name">
+                                </div>
+                                <div class="attraction-info">
+                                    <h5>@attraction.Name</h5>
+                                    <p><strong>Category:</strong> @attraction.Category</p>
+                                    <p><strong>Price:</strong> €@attraction.Price</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.EndDate > DateTime.Now) {
+                 <div class="weather-table-container">
+                    <table class="weather-table">
+                        <tbody>
+                            @{
+                                int counter = 0;
+                                foreach (var forecast in ((WayFarer.Controllers.Services.WeatherData)ViewData["WeatherData"]).Forecasts)
+                                {
+                                    if (counter % 6 == 0) 
+                                    {
+                                        if (counter > 0)
+                                        {
+                                            @:</tr>
+                                        }
+                                        @:<tr>
+                                    }
+                                    <td>
+                                        <p><strong>@forecast.Date.ToString("dd.MM.yyyy")</strong></p>
+                                        <img src="@forecast.Icon" alt="@forecast.WeatherDescription" />
+                                        <p>@forecast.Temperature°C</p>
+                                        <p>@forecast.WeatherDescription</p>
+                                    </td>
+                                    counter++;
+                                }
+                                if (counter % 5 != 0) 
+                                {
+                                    @:</tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+
+       <!-- Tab 2: Plan Your Trip -->
+        <div id="plan-your-trip" class="tab-content section">
+            <div class="plan-header">
+                <h2>Plan Your Trip</h2>
+                <button class="btn save-btn" onclick="saveDailyPlans(@Model.Id)">Save Daily Plans</button>
+            </div>
+            <div id="daily-plans-container"></div>
+        </div>
+
+        <!-- Custom Notification -->
+        <div id="notification" class="notification hidden">
+            <span id="notification-message"></span>
+            <button class="close-btn" onclick="closeNotification()">×</button>
+        </div>
+
     </div>
 
     <div id="delete-popup" class="popup">
@@ -82,39 +139,7 @@
         </div>
     </div>
 
-<div class="weather-table-container">
-    <table class="weather-table">
-        <tbody>
-            @{
-                int counter = 0;
-                foreach (var forecast in ((WayFarer.Controllers.Services.WeatherData)ViewData["WeatherData"]).Forecasts)
-                {
-                    if (counter % 6 == 0) 
-                    {
-                        if (counter > 0)
-                        {
-                            @:</tr>
-                        }
-                        @:<tr>
-                    }
-                    <td>
-                        <p><strong>@forecast.Date.ToString("dd.MM.yyyy")</strong></p>
-                        <img src="@forecast.Icon" alt="@forecast.WeatherDescription" />
-                        <p>@forecast.Temperature°C</p>
-                        <p>@forecast.WeatherDescription</p>
-                    </td>
-                    counter++;
-                }
-                if (counter % 5 != 0) 
-                {
-                    @:</tr>
-                }
-            }
-        </tbody>
-    </table>
-</div>
-
-
+    <footer></footer>
 
     <script>
         let itineraryIdToDelete;
@@ -131,7 +156,120 @@
         function deleteItinerary() {
             window.location.href = "/Itinerary/Delete/" + itineraryIdToDelete;
         }
-    </script>
 
+        // Custom Notification Function
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            document.getElementById('notification-message').innerText = message;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000); // Hide after 3 seconds
+        }
+
+        function closeNotification() {
+            document.getElementById('notification').classList.remove('show');
+        }
+
+        // Prosljeđivanje podataka o datumima u JavaScript
+        const startDate = new Date("@Model.StartDate");
+        const endDate = new Date("@Model.EndDate");
+
+        // Dohvati elemente koji će biti promijenjeni
+        const dailyPlansContainer = document.getElementById('daily-plans-container');
+        const saveButton = document.querySelector('.save-btn'); // Gumb za spremanje
+
+        const dailyPlansJson = '@Html.Raw(Model.DailyPlans ?? "{}")';
+        const dailyPlans = JSON.parse(dailyPlansJson);
+
+        let currentDate = new Date(startDate);
+        while (currentDate <= endDate) {
+            const dateStr = currentDate.toISOString().split('T')[0]; // Format: yyyy-mm-dd
+            const dayPlan = dailyPlans[dateStr] || "";  // Retrieve existing plan or empty string
+    
+            // Create HTML element for the day
+            const dayPlanDiv = document.createElement('div');
+            dayPlanDiv.classList.add('day-plan');
+    
+            dayPlanDiv.innerHTML = `
+                <h3>${currentDate.toLocaleDateString()}</h3>
+                <textarea id="${dateStr}" placeholder="Write your plan for this day...">${dayPlan}</textarea>
+            `;
+    
+            dailyPlansContainer.appendChild(dayPlanDiv);
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+
+        // Ako je itinerar završio (EndDate je manji od današnjeg datuma), sakrij gumb za spremanje i onemogući textarea
+        if (endDate < new Date()) {
+            // Sakrij gumb za spremanje
+            if (saveButton) {
+                saveButton.style.display = 'none';
+            }
+
+            // Onemogući sve textarea elemente
+            document.querySelectorAll('#daily-plans-container textarea').forEach(textarea => {
+                textarea.disabled = true;
+            });
+        }
+
+        // Spremanje dnevnih planova
+        function saveDailyPlans(itineraryId) {
+            const textareas = document.querySelectorAll('#daily-plans-container textarea');
+            const plans = {};
+
+            // Collect plans from each textarea
+            textareas.forEach(textarea => {
+                plans[textarea.id] = textarea.value;
+            });
+
+            // Send data to server as JSON
+            fetch(`/Itinerary/SaveDailyPlans`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    itineraryId: itineraryId,
+                    dailyPlans: JSON.stringify(plans)
+                })
+            }).then(response => {
+                if (response.ok) {
+                    showNotification('Daily plans saved successfully!');
+                } else {
+                    showNotification('Failed to save daily plans.');
+                }
+            });
+        }
+
+        // Auto-expandable textarea
+        document.querySelectorAll('textarea').forEach(textarea => {
+            textarea.addEventListener('input', () => {
+                textarea.style.height = 'auto'; // Reset height to auto
+                textarea.style.height = (textarea.scrollHeight) + 'px'; // Set height to fit content
+            });
+        });
+
+        // Tab switching function
+        function openTab(event, tabName) {
+            // Hide all tabs
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show the active tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Add 'active' class to the clicked button
+            event.currentTarget.classList.add('active');
+        }
+    </script>
 </body>
 </html>

@@ -136,5 +136,27 @@ namespace WayFarer.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpPost]
+        public IActionResult SaveDailyPlans([FromBody] DailyPlansDto request)
+        {
+            var itinerary = _dbContext.Itinerary.FirstOrDefault(i => i.Id == request.ItineraryId);
+            if (itinerary == null)
+            {
+                return NotFound();
+            }
+
+            itinerary.DailyPlans = request.DailyPlans;
+            _dbContext.SaveChanges();
+
+            return Ok();
+        }
+
+        public class DailyPlansDto
+        {
+            public int ItineraryId { get; set; }
+            public string DailyPlans { get; set; }
+        }
+
     }
 }

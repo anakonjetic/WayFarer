@@ -20,5 +20,7 @@ namespace WayFarer.Model
         public virtual City? City { get; set; }
 
         public virtual ICollection<Attraction>? Attractions { get; set; }
+
+        public string? DailyPlans { get; set; }
     }
 }
