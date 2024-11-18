@@ -15,11 +15,11 @@ namespace WayFarer.Model
         public virtual User? User { get; set; }
 
         [ForeignKey("City")]
-        public int CityId { get; set; }
+        public int? CityId { get; set; }
         public virtual City? City { get; set; }
 
         [ForeignKey("Attraction")]
-        public int AttractionId { get; set; }
+        public int? AttractionId { get; set; }
         public virtual Attraction? Attraction { get; set; }
 
         /* public Review(string comment, int rating, int userId)
