@@ -19,6 +19,8 @@
                 <input type="hidden" asp-for="Id" />
             }
 
+            <input type="hidden" value="https://media.istockphoto.com/id/918385326/vector/city.jpg?s=612x612&w=0&k=20&c=DsQ8mKfwqSdjSlYBsH4UoNqzz4Cn3UX6FolDkhp449I=" asp-for="Image" />
+
             <div class="form-group">
                 <label asp-for="Name">City Name</label>
                 <input type="text" asp-for="Name" required />
@@ -27,11 +29,6 @@
             <div class="form-group">
                 <label asp-for="Description">Description</label>
                 <textarea asp-for="Description" required></textarea>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Image">Image URL</label>
-                <input type="text" asp-for="Image" />
             </div>
 
             <button type="submit">@(Model.Id > 0 ? "Update City" : "Add City")</button>

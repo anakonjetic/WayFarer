@@ -18,6 +18,7 @@
             {
                 <input type="hidden" asp-for="Id" />
             }
+            <input type="hidden" value="@Model.Image" asp-for="Image" />
 
             <div class="form-group">
                 <label asp-for="Name">City Name</label>
@@ -29,14 +30,40 @@
                 <textarea asp-for="Description" required></textarea>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Image">Image URL</label>
-                <input type="text" asp-for="Image" />
-            </div>
-
             <button type="submit">@(Model.Id > 0 ? "Update City" : "Add City")</button>
         </form>
+        <br />
+        <div class="form-group">
+            <div class="col-md-12">
+                <form id="cityPhotoEdit" asp-controller="Admin" asp-action="UploadCityPhoto"
+                      asp-route-id="@Model.Id"
+                      enctype="multipart/form-data" class="dropzone">
+                </form>
+            </div>
+        </div>
     </section>
+
+
+
+
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <script type="text/javascript">
+        Dropzone.options.cityPhotoEdit = {
+            init: function () {
+                let cityPhotoEdit = this;
+
+                cityPhotoEdit.options.maxFiles = 1;
+                cityPhotoEdit.options.addRemoveLinks = true;
+
+                cityPhotoEdit.options.renameFile = function (file) {
+                    return new Date().getTime() + '_' + file.name.replace(" ", "_");
+                }
+            },
+            success: function (file, response) {
+                console.log({ file, response });
+            }
+        };
+    </script>
 
 </body>
 </html>
