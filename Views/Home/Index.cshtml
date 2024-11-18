@@ -10,22 +10,28 @@
 </head>
 <body>
 
+    <!-- Tabs for selecting sections -->
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab('myItineraries')">My Itineraries</div>
+        <div class="tab" onclick="switchTab('itineraryArchive')">Itinerary Archive</div>
+    </div>
+
     <!-- My Itineraries Section -->
-    <section id="itinerari" class="section">
+    <section id="myItineraries" class="section active">
         <h2>My Itineraries <button class="btn" onclick="kreirajItinerar()">+ New Itinerary </button></h2>
         <div class="scroll-container">
-            <button class="scroll-btn left" onclick="scrollLeft('itinerary-scroll')">&lt;</button>
+            <button id="left-itinerary-btn" class="scroll-btn left" onclick="scrollLeft('itinerary-scroll')">&lt;</button>
             <div id="itinerary-scroll" class="scroll-content">
-                @if (Model.Itineraries == null || !Model.Itineraries.Any())
+                @if (Model.Itineraries == null || !Model.Itineraries.Any(i => i.EndDate > DateTime.Today))
                 {
                     <div class="itinerary-card empty-card">
-                        <h3>No itineraries available</h3>
-                        <p>Please create a new itinerary to get started.</p>
+                        <h3>No ongoing itineraries</h3>
+                        <p>Your current itineraries will appear here.</p>
                     </div>
                 }
                 else
                 {
-                    @foreach (var item in Model.Itineraries.OrderBy(i => i.StartDate))
+                    @foreach (var item in Model.Itineraries.Where(i => i.EndDate > DateTime.Today).OrderBy(i => i.StartDate))
                     {
                         <a href="/Itinerary/Details/@item.Id" class="itinerary-link">
                             <div class="itinerary-card">
@@ -42,15 +48,51 @@
                     }
                 }
             </div>
-            <button class="scroll-btn right" onclick="scrollRight('itinerary-scroll')">&gt;</button>
+            <button id="right-itinerary-btn" class="scroll-btn right" onclick="scrollRight('itinerary-scroll')">&gt;</button>
         </div>
     </section>
 
-    <!-- Cities Section -->
+    <!-- Itinerary Archive Section -->
+    <section id="itineraryArchive" class="section">
+        <h2>Itinerary Archive</h2>
+        <div class="scroll-container">
+            <button id="left-archive-btn" class="scroll-btn left" onclick="scrollLeft('archive-scroll')">&lt;</button>
+            <div id="archive-scroll" class="scroll-content">
+                @if (Model.Itineraries == null || !Model.Itineraries.Any(i => i.EndDate < DateTime.Today))
+                {
+                    <div class="itinerary-card empty-card">
+                        <h3>No archived itineraries</h3>
+                        <p>Your past itineraries will appear here.</p>
+                    </div>
+                }
+                else
+                {
+                    @foreach (var item in Model.Itineraries.Where(i => i.EndDate < DateTime.Today).OrderBy(i => i.StartDate))
+                    {
+                        <a href="/Itinerary/Details/@item.Id" class="itinerary-link">
+                            <div class="itinerary-card">
+                                <div class="image-container">
+                                    <img src="@item.City.Image" alt="@item.City.Name">
+                                </div>
+                                <div class="card-info">
+                                    <h3>@item.City.Name</h3>
+                                    <p><strong>Dates:</strong> @item.StartDate.ToString("dd.MM.yyyy.") - @item.EndDate.ToString("dd.MM.yyyy.")</p>
+                                    <p><strong>Budget:</strong> @item.TotalPrice€</p>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+            </div>
+            <button id="right-archive-btn" class="scroll-btn right" onclick="scrollRight('archive-scroll')">&gt;</button>
+        </div>
+    </section>
+
+    <!-- Cities Section - Always Visible -->
     <section id="gradovi" class="section">
         <h2>Cities</h2>
         <div class="scroll-container">
-            <button class="scroll-btn left" onclick="scrollLeft('city-scroll')">&lt;</button>
+            <button id="left-city-btn" class="scroll-btn left" onclick="scrollLeft('city-scroll')">&lt;</button>
             <div id="city-scroll" class="scroll-content">
                 @foreach (var item in Model.Cities.Take(100))
                 {
@@ -67,26 +109,64 @@
                     </a>
                 }
             </div>
-            <button class="scroll-btn right" onclick="scrollRight('city-scroll')">&gt;</button>
+            <button id="right-city-btn" class="scroll-btn right" onclick="scrollRight('city-scroll')">&gt;</button>
         </div>
     </section>
 
     <script>
-        // Scroll content left
+        // Function to scroll content left
         function scrollLeft(containerId) {
             const container = document.getElementById(containerId);
             container.scrollBy({ left: -300, behavior: 'smooth' });
         }
 
-        // Scroll content right
+        // Function to scroll content right
         function scrollRight(containerId) {
             const container = document.getElementById(containerId);
             container.scrollBy({ left: 300, behavior: 'smooth' });
         }
 
+        // Function to check if scroll buttons should be shown
+        function checkScrollButtons(containerId, leftBtnId, rightBtnId) {
+            const container = document.getElementById(containerId);
+            const leftBtn = document.getElementById(leftBtnId);
+            const rightBtn = document.getElementById(rightBtnId);
+
+            // Check if there is enough content to scroll horizontally
+            if (container.scrollWidth > container.clientWidth) {
+                leftBtn.style.display = 'block';
+                rightBtn.style.display = 'block';
+            } else {
+                leftBtn.style.display = 'none';
+                rightBtn.style.display = 'none';
+            }
+        }
+
+        // Check scroll buttons visibility when the page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            checkScrollButtons('itinerary-scroll', 'left-itinerary-btn', 'right-itinerary-btn');
+            checkScrollButtons('archive-scroll', 'left-archive-btn', 'right-archive-btn');
+            checkScrollButtons('city-scroll', 'left-city-btn', 'right-city-btn');
+        });
+
         // Function for creating new itinerary
         function kreirajItinerar() {
             window.location.href = "/Itinerary/Create";
+        }
+
+        // Function to switch between tabs
+        function switchTab(tabId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show the selected section and highlight the active tab
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`[onclick="switchTab('${tabId}')"]`).classList.add('active');
         }
     </script>
 

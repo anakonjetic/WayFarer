@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using WayFarer.Controllers.Services;
 using WayFarer.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddHttpClient<WeatherService>();
 
 builder.Services.AddDbContext<WayFarerDbContext>(options =>
     options.UseSqlServer(

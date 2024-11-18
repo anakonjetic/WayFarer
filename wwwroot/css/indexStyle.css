@@ -10,15 +10,41 @@ body {
     background-color: #f5f5f5;
 }
 
-/* Sekcije */
 .section {
     padding: 2rem;
-    background-color: #f0f0f0; /* Svijetlo siva pozadina */
+    background-color: #f0f0f0;
     margin-bottom: 1rem;
     border-radius: 10px;
+    display: none;
 }
 
-/* Naslovi */
+.section.active {
+    display: block;
+}
+
+/* Cities section always visible */
+#gradovi {
+    display: block;
+}
+
+.tabs {
+    display: flex;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+}
+
+.tab.active {
+    background-color: #ddd;
+    font-weight: bold;
+}
+
 h2 {
     margin-bottom: 1rem;
     display: flex;
@@ -26,13 +52,13 @@ h2 {
     align-items: center;
 }
 
-    h2 span {
-        font-size: 1.5rem; /* Veća veličina fonta za naslove */
-    }
+h2 span {
+    font-size: 1.5rem;
+}
 
 /* Gumb za dodavanje itinerara */
 .btn {
-    background-color: #6c757d; /* Siva boja */
+    background-color: #6c757d;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -42,11 +68,10 @@ h2 {
     transition: background-color 0.3s ease;
 }
 
-    .btn:hover {
-        background-color: #5a6268; /* Tamnija siva na hover */
-    }
+.btn:hover {
+    background-color: #5a6268; 
+}
 
-/* Kontejner za skrolanje */
 .scroll-container {
     display: flex;
     align-items: center;
@@ -54,7 +79,6 @@ h2 {
     overflow: hidden;
 }
 
-/* Sadržaj za skrolanje (kartice) */
 .scroll-content {
     display: flex;
     flex-direction: row;
@@ -67,7 +91,8 @@ h2 {
 
 /* Gumbi za skrolanje */
 .scroll-btn {
-    background-color: #6c757d; /* Siva boja */
+    display: none;
+    background-color: #6c757d;
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -82,9 +107,9 @@ h2 {
     opacity: 0.8;
 }
 
-    .scroll-btn:hover {
-        opacity: 1;
-    }
+.scroll-btn:hover {
+    opacity: 1;
+}
 
 .left {
     left: 10px;
@@ -103,18 +128,17 @@ h2 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px;
     flex-shrink: 0;
-    text-decoration: none; /* Maknut underline */
+    text-decoration: none;
 }
 
-/* Stil za linkove na itinerare i gradove */
 .itinerary-link, .city-link {
-    color: #000; /* Crna boja fonta */
-    text-decoration: none; /* Maknuta underline */
+    color: #000; 
+    text-decoration: none; 
 }
 
-    .itinerary-link:hover, .city-link:hover {
-        color: #000; /* Ostavlja crnu boju na hover */
-    }
+.itinerary-link:hover, .city-link:hover {
+    color: #000; 
+}
 
 /* Slikovne kartice */
 .image-container img,
@@ -130,7 +154,6 @@ h2 {
     text-align: center;
 }
 
-/* Prazna kartica */
 .empty-card {
     display: flex;
     flex-direction: column;
@@ -139,7 +162,6 @@ h2 {
     border: 2px dashed #ccc;
 }
 
-/* Responsivnost */
 @media (max-width: 600px) {
     .scroll-content {
         gap: 10px;

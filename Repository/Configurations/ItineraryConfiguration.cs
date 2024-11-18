@@ -13,20 +13,14 @@ namespace WayFarer.Repository.Configurations
 
             builder.Property(p => p.Id).ValueGeneratedOnAdd();
 
-            builder.Property(p => p.StartDate)
-               .IsRequired();
+            builder.Property(p => p.StartDate).IsRequired();
+            builder.Property(p => p.EndDate).IsRequired();
+            builder.Property(p => p.TotalPrice).IsRequired();
+            builder.Property(p => p.UserId).IsRequired();
+            builder.Property(p => p.CityId).IsRequired();
 
-            builder.Property(p => p.EndDate)
-               .IsRequired();
-
-            builder.Property(p => p.TotalPrice)
-               .IsRequired();
-
-            builder.Property(p => p.UserId)
-               .IsRequired();
-
-            builder.Property(p => p.CityId)
-               .IsRequired();
+            builder.Property(p => p.DailyPlans)
+                   .HasColumnType("nvarchar(max)"); // Sprema kao JSON string
 
             builder.Ignore(p => p.User);
             builder.Ignore(p => p.City);

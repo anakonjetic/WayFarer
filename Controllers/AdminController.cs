@@ -106,7 +106,6 @@ namespace WayFarer.Controllers
             return View(model);
         }
 
-        [HttpPost]
         public IActionResult ManageCitiesDelete(int id)
         {
             var city = _dbContext.City.Find(id);
@@ -218,7 +217,7 @@ namespace WayFarer.Controllers
             return RedirectToAction("ManageAttractions");
         }
 
-        [HttpPost]
+   
         public IActionResult ManageAttractionsDelete(int id)
         {
             var attraction = _dbContext.Attraction.Find(id);

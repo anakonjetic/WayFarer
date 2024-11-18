@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using WayFarer.Controllers.Services;
 using WayFarer.Model;
 using WayFarer.Repository;
 
@@ -9,14 +10,16 @@ namespace WayFarer.Controllers
     public class ItineraryController : Controller
     {
         private readonly WayFarerDbContext _dbContext;
+        private readonly WeatherService _weatherService;
 
-        public ItineraryController(WayFarerDbContext dbContext)
+        public ItineraryController(WayFarerDbContext dbContext, WeatherService weatherService)
         {
             _dbContext = dbContext;
+            _weatherService = weatherService;
         }
 
         // Show itinerary details
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
             var itinerary = _dbContext.Itinerary
                 .Include(i => i.City)
@@ -27,6 +30,11 @@ namespace WayFarer.Controllers
             {
                 return NotFound();
             }
+
+            var weatherData = await _weatherService.GetWeatherByCityNameAsync(itinerary.City.Name);
+
+            // Pass the weather data to the view
+            ViewData["WeatherData"] = weatherData;
 
             return View("~/Views/User/ItineraryDetails.cshtml", itinerary);
         }
@@ -128,5 +136,27 @@ namespace WayFarer.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpPost]
+        public IActionResult SaveDailyPlans([FromBody] DailyPlansDto request)
+        {
+            var itinerary = _dbContext.Itinerary.FirstOrDefault(i => i.Id == request.ItineraryId);
+            if (itinerary == null)
+            {
+                return NotFound();
+            }
+
+            itinerary.DailyPlans = request.DailyPlans;
+            _dbContext.SaveChanges();
+
+            return Ok();
+        }
+
+        public class DailyPlansDto
+        {
+            public int ItineraryId { get; set; }
+            public string DailyPlans { get; set; }
+        }
+
     }
 }

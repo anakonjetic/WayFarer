@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WayFarer.Repository;
 
@@ -11,9 +12,10 @@ using WayFarer.Repository;
 namespace WayFarer.Migrations
 {
     [DbContext(typeof(WayFarerDbContext))]
-    partial class WayFarerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241117212702_UpdateReviewToAllowNullableCityAndAttraction")]
+    partial class UpdateReviewToAllowNullableCityAndAttraction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,9 +129,6 @@ namespace WayFarer.Migrations
                     b.Property<int>("CityId")
                         .HasColumnType("int");
 
-                    b.Property<string>("DailyPlans")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -153,8 +152,8 @@ namespace WayFarer.Migrations
                         {
                             Id = 1,
                             CityId = 1,
-                            EndDate = new DateTime(2024, 11, 18, 14, 13, 18, 244, DateTimeKind.Local).AddTicks(3326),
-                            StartDate = new DateTime(2024, 11, 18, 14, 13, 18, 244, DateTimeKind.Local).AddTicks(3324),
+                            EndDate = new DateTime(2024, 11, 17, 22, 27, 1, 699, DateTimeKind.Local).AddTicks(8679),
+                            StartDate = new DateTime(2024, 11, 17, 22, 27, 1, 699, DateTimeKind.Local).AddTicks(8676),
                             TotalPrice = 0m,
                             UserId = 1
                         });
@@ -262,7 +261,7 @@ namespace WayFarer.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2024, 11, 18, 14, 13, 18, 244, DateTimeKind.Local).AddTicks(3209),
+                            DateOfBirth = new DateTime(2024, 11, 17, 22, 27, 1, 699, DateTimeKind.Local).AddTicks(8447),
                             Email = "skorkut@gmail.com",
                             Gender = 0,
                             IsActive = true,
@@ -275,7 +274,7 @@ namespace WayFarer.Migrations
                         new
                         {
                             Id = 2,
-                            DateOfBirth = new DateTime(2024, 11, 18, 14, 13, 18, 244, DateTimeKind.Local).AddTicks(3267),
+                            DateOfBirth = new DateTime(2024, 11, 17, 22, 27, 1, 699, DateTimeKind.Local).AddTicks(8578),
                             Email = "ignacijefuchs@gmail.com",
                             Gender = 0,
                             IsActive = true,

@@ -30,7 +30,11 @@
                 <textarea asp-for="Description" required></textarea>
             </div>
 
-            <button type="submit">@(Model.Id > 0 ? "Update City" : "Add City")</button>
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="button" class="btn cancel-btn" onclick="window.history.back();">Cancel</button>
+                <button type="submit" class="btn save-btn">@(Model.Id > 0 ? "Update City" : "Add City")</button>
+            </div>
         </form>
         <br />
         <div class="form-group">

@@ -33,12 +33,21 @@
 
             <div class="attractions">
                 <h4>Attractions:</h4>
-                <ul>
+                <div class="attractions-grid">
                     @foreach (var attraction in Model.Attractions)
                     {
-                        <li>@attraction.Name</li>
+                        <div class="attraction-card">
+                            <div class="image-container">
+                                <img src="@attraction.Image" alt="@attraction.Name">
+                            </div>
+                            <div class="attraction-info">
+                                <h5>@attraction.Name</h5>
+                                <p><strong>Category:</strong> @attraction.Category</p>
+                                <p><strong>Price:</strong> €@attraction.Price</p>
+                            </div>
+                        </div>
                     }
-                </ul>
+                </div>
             </div>
 
             <div class="reviews">
