@@ -61,23 +61,37 @@
         </div>
     </div>
 
-      <div class="weather-table-container">
-        <table class="weather-table">
-            <tbody>
-                <tr>
-                    @foreach (var forecast in ((WayFarer.Controllers.Services.WeatherData)ViewData["WeatherData"]).Forecasts)
+<div class="weather-table-container">
+    <table class="weather-table">
+        <tbody>
+            @{
+                int counter = 0;
+                foreach (var forecast in ((WayFarer.Controllers.Services.WeatherData)ViewData["WeatherData"]).Forecasts)
+                {
+                    if (counter % 5 == 0) 
                     {
-                        <td>
-                            <p><strong>@forecast.Date.ToString("dd.MM.yyyy")</strong></p>
-                            <img src="@forecast.Icon" alt="@forecast.WeatherDescription" />
-                            <p>@forecast.Temperature°C</p>
-                            <p>@forecast.WeatherDescription</p>
-                        </td>
+                        if (counter > 0)
+                        {
+                            @:</tr>
+                        }
+                        @:<tr>
                     }
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                    <td>
+                        <p><strong>@forecast.Date.ToString("dd.MM.yyyy")</strong></p>
+                        <img src="@forecast.Icon" alt="@forecast.WeatherDescription" />
+                        <p>@forecast.Temperature°C</p>
+                        <p>@forecast.WeatherDescription</p>
+                    </td>
+                    counter++;
+                }
+                if (counter % 5 != 0) 
+                {
+                    @:</tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
 
 
 

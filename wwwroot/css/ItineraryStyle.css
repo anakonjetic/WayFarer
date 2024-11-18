@@ -419,15 +419,21 @@ h2 span {
 
 .weather-table {
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     border-collapse: collapse;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     border-radius: 10px;
 }
 
+    .weather-table tr {
+        display: flex;
+        justify-content: space-around; /* Evenly space out columns within each row */
+    }
+
     .weather-table td {
-        width: 20%; /* Each cell is 20% to limit to 5 cells per row */
+        flex: 1;
+        max-width: 20%; /* Ensures each column takes up no more than 20% */
         padding: 15px;
         text-align: center;
         background-color: #ffffff;
@@ -449,12 +455,16 @@ h2 span {
         height: auto;
         margin: 5px 0;
         border-radius: 5px;
-        background-color: #f0f8ff; /* Light background behind the icon */
+        background-color: #f0f8ff;
     }
 
 /* Responsive styling to adjust columns on smaller screens */
 @media (max-width: 600px) {
+    .weather-table tr {
+        flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    }
+
     .weather-table td {
-        width: 50%; /* 2 columns per row on smaller screens */
+        width: 50%; /* Two columns per row on smaller screens */
     }
 }

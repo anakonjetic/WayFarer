@@ -27,11 +27,13 @@ namespace WayFarer.Controllers.Services
             {
                 Forecasts = data["list"].Select(item => new WeatherForecast
                 {
-                    Date = (DateTime)item["dt_txt"],
+                    Date = ((DateTime)item["dt_txt"]).Date,
                     Temperature = (float)item["main"]["temp"],
                     WeatherDescription = (string)item["weather"][0]["description"],
                     Icon = $"http://openweathermap.org/img/wn/{item["weather"][0]["icon"]}.png"
-                }).ToList()
+                }).GroupBy(f => f.Date)
+                  .Select(g => g.First())
+                  .ToList()
             };
 
             return weatherData;
