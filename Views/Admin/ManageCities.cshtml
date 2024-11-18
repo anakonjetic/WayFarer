@@ -19,26 +19,26 @@
         </a>
     </div>
 
-    <div class="city-list">
-        @foreach (var city in @Model)
-        {
-            <div class="city-card">
-                <div class="city-image-container">
-                    <img src="@city.Image" alt="@city.Name">
+        <div class="city-list">
+            @foreach (var city in @Model)
+            {
+                <div class="city-card">
+                    <div class="city-image-container">
+                        <img src=@city.Image alt="@city.Name">
+                    </div>
+                    <div class="city-info">
+                        <h3>@city.Name</h3>
+                        <p>@city.Description</p>
+                    </div>
+                    <div class="city-actions">
+                        <button class="btn edit-icon" onclick="window.location.href='@Url.Action("ManageCitiesEdit", "Admin", new { id = city.Id })'">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                        <button class="btn delete-icon" onclick="confirmDelete(@city.Id)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="city-info">
-                    <h3>@city.Name</h3>
-                    <p>@city.Description</p>
-                </div>
-                <div class="city-actions">
-                    <button class="btn edit-icon" onclick="window.location.href='@Url.Action("ManageCitiesEdit", "Admin", new { id = city.Id })'">
-                        <i class="fas fa-pencil-alt"></i>
-                    </button>
-                    <button class="btn delete-icon" onclick="confirmDelete(@city.Id)">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-            </div>
         }
     </div>
 
@@ -69,6 +69,5 @@
             window.location.href = "/Admin/ManageCitiesDelete/" + cityIdToDelete;
         }
     </script>
-
 </body>
 </html>
