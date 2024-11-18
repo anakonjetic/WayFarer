@@ -9,34 +9,38 @@
     <link rel="stylesheet" href="~/css/manageCitiesStyle.css">
 </head>
 <body>
+    <div class="city-container">
+        <section id="city-form">
+            <h2>@(Model.Id > 0 ? "Edit City" : "Add New City")</h2>
 
-    <section id="city-form">
-        <h2>@(Model.Id > 0 ? "Edit City" : "Add New City")</h2>
+            <form asp-action="@(Model.Id > 0 ? "Edit" : "ManageCitiesAdd")" asp-controller="Admin" method="post">
+                @if (@Model.Id > 0)
+                {
+                    <input type="hidden" asp-for="Id" />
+                }
 
-        <form asp-action="@(Model.Id > 0 ? "Edit" : "ManageCitiesAdd")" asp-controller="Admin" method="post">
-            @if (@Model.Id > 0)
-            {
-                <input type="hidden" asp-for="Id" />
-            }
+                <div class="form-group">
+                    <label asp-for="Name">City Name*</label>
+                    <input type="text" asp-for="Name" required />
+                </div>
 
-            <div class="form-group">
-                <label asp-for="Name">City Name</label>
-                <input type="text" asp-for="Name" required />
-            </div>
+                <div class="form-group">
+                    <label asp-for="Description">Description*</label>
+                    <textarea asp-for="Description" required></textarea>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="Description">Description</label>
-                <textarea asp-for="Description" required></textarea>
-            </div>
+                <div class="form-group">
+                    <label asp-for="Image">Image URL*</label>
+                    <input type="text" asp-for="Image" required/>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="Image">Image URL</label>
-                <input type="text" asp-for="Image" />
-            </div>
-
-            <button type="submit">@(Model.Id > 0 ? "Update City" : "Add City")</button>
-        </form>
-    </section>
-
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" class="btn cancel-btn" onclick="window.history.back();">Cancel</button>
+                    <button type="submit" class="btn save-btn">@(Model.Id > 0 ? "Update City" : "Add City")</button>
+                </div>
+            </form>
+        </section>
+    </div>
 </body>
 </html>

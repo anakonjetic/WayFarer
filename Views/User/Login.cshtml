@@ -1,33 +1,33 @@
 ﻿@using WayFarer.Controllers
 @model UserLoginViewModel
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="~/css/loginStyle.css">
 </head>
+
 <body>
+    <div class="containerLogin">
+        <h2>Login</h2>
+        <form asp-action="Login" asp-controller="User" method="post">
+            <!-- Validation Errors -->
+            <div asp-validation-summary="All" class="text-danger"></div>
 
-<div class="containerLogin">
-    <h2>Login</h2>
-    <form asp-action="Login" asp-controller="User" method="post">
-        <!-- Prikaz grešaka ako postoje -->
-        <div asp-validation-summary="All" class="text-danger"></div>
+            <label for="username">Username:</label>
+            <input asp-for="Username" class="form-control" placeholder="Enter your username" required />
+            <span asp-validation-for="Username" class="text-danger"></span>
 
-        <label for="username">Username:</label>
-        <input asp-for="Username" class="form-control" />
-        <span asp-validation-for="Username" class="text-danger"></span>
+            <label for="password">Password:</label>
+            <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" required />
+            <span asp-validation-for="Password" class="text-danger"></span>
 
-        <label for="password">Password:</label>
-        <input asp-for="Password" type="password" class="form-control" />
-        <span asp-validation-for="Password" class="text-danger"></span>
+            <button type="submit">Login</button>
 
-        <button type="submit">Login</button>
-
-        <div class="register-link">
-            <p>Don't have an account? <a asp-controller="User" asp-action="Register">Register here</a></p>
-        </div>
-    </form>
-</div>
-
+            <div class="register-link">
+                <p>Don't have an account? <a asp-controller="User" asp-action="Register">Register here</a></p>
+            </div>
+        </form>
+    </div>
 </body>
