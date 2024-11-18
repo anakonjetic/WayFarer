@@ -32,5 +32,43 @@ namespace WayFarer.Controllers
 
             return View("~/Views/User/CityDetails.cshtml", city);
         }
+
+        // Show the form to create a new review for a city
+        public IActionResult CreateReview(int cityId, int itineraryId)
+        {
+            var city = _dbContext.City.FirstOrDefault(c => c.Id == cityId);
+
+            if (city == null)
+            {
+                return NotFound();
+            }
+
+            var review = new Review
+            {
+                CityId = cityId,
+                UserId = (int)HttpContext.Session.GetInt32("UserId"),
+            };
+
+            ViewBag.ItineraryId = itineraryId;
+            ViewBag.CityName = city.Name;
+
+            return View("~/Views/User/ReviewCreate.cshtml", review);
+        }
+
+        // Handle the submission of a new review
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateReview(Review review, int itineraryId)
+        {
+            if (ModelState.IsValid)
+            {
+                _dbContext.Review.Add(review);
+                await _dbContext.SaveChangesAsync();
+
+                return RedirectToAction("Details", "City", new { id = review.CityId });
+            }
+
+            return View("~/Views/User/ReviewCreate.cshtml", review);
+        }
     }
 }

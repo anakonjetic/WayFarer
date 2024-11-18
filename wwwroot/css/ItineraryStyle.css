@@ -23,9 +23,9 @@ h2 {
     align-items: center;
 }
 
-h2 span {
-    font-size: 1.5rem;
-}
+    h2 span {
+        font-size: 1.5rem;
+    }
 
 .btn {
     background-color: #6c757d; /* Grey background */
@@ -38,9 +38,9 @@ h2 span {
     transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-    background-color: #5a6268;
-}
+    .btn:hover {
+        background-color: #5a6268;
+    }
 
 .itinerary-details-page {
     background-color: #f0f0f0; /* Light grey background for entire page */
@@ -69,18 +69,18 @@ h2 span {
     gap: 20px;
 }
 
-.edit-delete-icons a,
-.edit-delete-icons button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-}
+    .edit-delete-icons a,
+    .edit-delete-icons button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+    }
 
-.edit-delete-icons i {
-    font-size: 22px;
-    color: #333;
-}
+    .edit-delete-icons i {
+        font-size: 22px;
+        color: #333;
+    }
 
 .edit-icon {
     border: 2px solid #333;
@@ -88,10 +88,10 @@ h2 span {
     padding: 5px;
 }
 
-.edit-icon:hover {
-    border-color: #848484; /* Light grey border */
-    background-color: #848484;
-}
+    .edit-icon:hover {
+        border-color: #848484; /* Light grey border */
+        background-color: #848484;
+    }
 
 .edit-delete-icons i:hover {
     color: #333;
@@ -108,43 +108,20 @@ h2 span {
     padding-right: 30px;
 }
 
-.itinerary-info p {
-    font-size: 18px;
-    margin: 10px 0;
-    line-height: 1.6;
-}
+    .itinerary-info p {
+        font-size: 18px;
+        margin: 10px 0;
+        line-height: 1.6;
+    }
 
 /* City image styling */
-.image-container img {
-    width: 400px;
-    height: 250px;
-    object-fit: cover;
+.itinerary-details .image-container img {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
     border-radius: 8px;
+    object-fit: cover;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Attractions list styling */
-.attractions h4 {
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 15px;
-    color: #444;
-}
-
-.attractions ul {
-    list-style-type: disc;
-    padding-left: 20px;
-}
-
-.attractions li {
-    font-size: 16px;
-    margin: 8px 0;
-    transition: transform 0.3s ease;
-}
-
-.attractions li:hover {
-    transform: translateX(5px);
-    color: #007bff;
 }
 
 .delete-btn {
@@ -157,9 +134,9 @@ h2 span {
     transition: background-color 0.3s ease;
 }
 
-.delete-btn:hover {
-    background-color: #e04d41;
-}
+    .delete-btn:hover {
+        background-color: #e04d41;
+    }
 
 .popup {
     display: none;
@@ -182,11 +159,11 @@ h2 span {
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
 }
 
-.popup-content h3 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    font-weight: 600;
-}
+    .popup-content h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
 
 .popup-buttons {
     display: flex;
@@ -195,13 +172,13 @@ h2 span {
     margin-top: 30px;
 }
 
-.popup-buttons button {
-    padding: 12px 25px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    .popup-buttons button {
+        padding: 12px 25px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
 .confirm-btn {
     background-color: #dc3545;
@@ -209,9 +186,9 @@ h2 span {
     border: none;
 }
 
-.confirm-btn:hover {
-    background-color: #c82333;
-}
+    .confirm-btn:hover {
+        background-color: #c82333;
+    }
 
 .cancel-btn {
     background-color: #6c757d;
@@ -219,9 +196,9 @@ h2 span {
     border: none;
 }
 
-.cancel-btn:hover {
-    background-color: #5a6268;
-}
+    .cancel-btn:hover {
+        background-color: #5a6268;
+    }
 
 .popup-buttons .cancel-btn {
     margin-left: 10px;
@@ -237,23 +214,23 @@ h2 span {
     box-sizing: border-box;
 }
 
-.edit-itinerary-container h2 {
-    font-size: 32px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 30px;
-}
+    .edit-itinerary-container h2 {
+        font-size: 32px;
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+    }
 
 .form-group {
     margin-bottom: 20px;
 }
 
-.form-group label {
-    font-size: 16px;
-    color: #333;
-    display: block;
-    margin-bottom: 8px;
-}
+    .form-group label {
+        font-size: 16px;
+        color: #333;
+        display: block;
+        margin-bottom: 8px;
+    }
 
 .form-control {
     width: 100%;
@@ -265,11 +242,11 @@ h2 span {
     background-color: #f9f9f9;
 }
 
-.form-control:focus {
-    border-color: #6c757d;
-    background-color: #fff;
-    outline: none;
-}
+    .form-control:focus {
+        border-color: #6c757d;
+        background-color: #fff;
+        outline: none;
+    }
 
 .edit-itinerary-container .form-actions {
     display: flex;
@@ -284,10 +261,10 @@ h2 span {
     border: 1px solid #ddd;
 }
 
-.edit-itinerary-container .cancel-btn:hover {
-    background-color: #e0e0e0;
-    border-color: #ccc;
-}
+    .edit-itinerary-container .cancel-btn:hover {
+        background-color: #e0e0e0;
+        border-color: #ccc;
+    }
 
 .edit-itinerary-container .save-btn {
     background-color: #6c757d;
@@ -299,9 +276,9 @@ h2 span {
     transition: background-color 0.3s ease;
 }
 
-.edit-itinerary-container .save-btn:hover {
-    background-color: #5a6268;
-}
+    .edit-itinerary-container .save-btn:hover {
+        background-color: #5a6268;
+    }
 
 /* Responsive Design for smaller screens */
 @media (max-width: 768px) {
@@ -328,83 +305,168 @@ h2 span {
     box-sizing: border-box;
 }
 
-.create-itinerary-container h2 {
-    font-size: 32px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 30px;
-}
+    .create-itinerary-container h2 {
+        font-size: 32px;
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+    }
 
-.create-itinerary-container .form-group {
-    margin-bottom: 20px;
-}
+    .create-itinerary-container .form-group {
+        margin-bottom: 20px;
+    }
 
-.create-itinerary-container .form-group label {
-    font-size: 16px;
-    color: #333;
-    display: block;
-    margin-bottom: 8px;
-}
+        .create-itinerary-container .form-group label {
+            font-size: 16px;
+            color: #333;
+            display: block;
+            margin-bottom: 8px;
+        }
 
-.create-itinerary-container .form-control {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-sizing: border-box;
-    background-color: #f9f9f9;
-}
+    .create-itinerary-container .form-control {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-sizing: border-box;
+        background-color: #f9f9f9;
+    }
 
-.create-itinerary-container .form-control:focus {
-    border-color: #6c757d;
-    background-color: #fff;
-    outline: none;
-}
+        .create-itinerary-container .form-control:focus {
+            border-color: #6c757d;
+            background-color: #fff;
+            outline: none;
+        }
 
-.create-itinerary-container .form-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-}
+    .create-itinerary-container .form-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+    }
 
-.create-itinerary-container .cancel-btn {
-    background-color: #f0f0f0;
-    color: #333;
-    border: 1px solid #ddd;
-}
+    .create-itinerary-container .cancel-btn {
+        background-color: #f0f0f0;
+        color: #333;
+        border: 1px solid #ddd;
+    }
 
-.create-itinerary-container .cancel-btn:hover {
-    background-color: #e0e0e0;
-    border-color: #ccc;
-}
+        .create-itinerary-container .cancel-btn:hover {
+            background-color: #e0e0e0;
+            border-color: #ccc;
+        }
 
-.create-itinerary-container .save-btn {
-    background-color: #6c757d;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-}
+    .create-itinerary-container .save-btn {
+        background-color: #6c757d;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+    }
 
-.create-itinerary-container .save-btn:hover {
-    background-color: #5a6268;
-}
+        .create-itinerary-container .save-btn:hover {
+            background-color: #5a6268;
+        }
 
 /* Back to Homepage Button */
 .back-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: 2px solid #6c757d;
+    border-radius: 20px;
+    background-color: transparent;
+    cursor: pointer;
+    color: #6c757d;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    .back-button:hover {
+        background-color: #6c757d;
+        color: white;
+    }
+
+/* Attraction Grid */
+.attractions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.attraction-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+    .attraction-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Image container inside the attraction card */
+    .attraction-card .image-container {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+    }
+
+        .attraction-card .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+    .attraction-card:hover .image-container img {
+        transform: scale(1.1);
+    }
+
+/* Attraction information */
+.attraction-info {
+    padding: 15px;
+}
+
+    .attraction-info h5 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .attraction-info p {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+
+    .attraction-info strong {
+        font-weight: bold;
+    }
+
+.custom-button {
     padding: 10px 20px;
     font-size: 1rem;
     border: 2px solid #333;
     color: #333;
     text-decoration: none;
     border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
+    display: inline-block;
+    text-align: center;
 }
 
+    .custom-button:hover {
+        background-color: #d9d9d9;
+        color: #000;
+    }
+
+    .custom-button:active {
+        background-color: #bbb;
+        color: #333;
+    }
 .back-button:hover {
     background-color: #d9d9d9;
     color: #000;
