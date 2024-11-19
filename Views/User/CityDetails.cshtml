@@ -18,9 +18,23 @@
                 <h2 class="city-title">
                     <span class="city-name">@Model.Name</span>
                 </h2>
-                <!-- Back to Homepage Button -->
-                <a href="/" class="back-button">&lt; Back to Homepage</a>
+
+                <div class="button-container">
+                    <button id="wishlistButton" onclick="toggleWishlist(@Model.Id)" class="wishlist-button">
+                        @if (ViewBag.IsInWishlist)
+                        {
+                            <span>Remove from wishlist</span>
+                        }
+                        else
+                        {
+                            <span>Add to wishlist</span>
+                        }
+                    </button>
+
+                    <a href="/" class="back-button">&lt; Back to Homepage</a>
+                </div>
             </div>
+
 
             <div class="city-details">
                 <div class="city-info">
@@ -83,6 +97,31 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function toggleWishlist(cityId) {
+            fetch('/City/ToggleWishlist', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded' // Set the content type to URL encoded
+                },
+                body: 'cityId=' + encodeURIComponent(cityId) // Send the cityId as a URL parameter
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const button = document.getElementById('wishlistButton');
+                        if (data.isInWishlist) {
+                            button.innerHTML = '<span>Remove from Wishlist</span>';
+                        } else {
+                            button.innerHTML = '<span>Add to Wishlist</span>';
+                        }
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+    </script>
 
 </body>
 </html>

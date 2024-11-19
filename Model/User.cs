@@ -20,6 +20,9 @@ namespace WayFarer.Model
 
         public virtual ICollection<Itinerary>? Itineraries { get; set; }
         public virtual ICollection<Review>? Reviews { get; set; }
+        public virtual ICollection<Wishlist>? Wishlists { get; set; }
+
+
 
         public User() { }
         public User(string name, string surname, DateTime dateOfBirth, string email, Gender gender, Role role, string username, string password, bool isActive)
