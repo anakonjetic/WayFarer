@@ -14,5 +14,6 @@ namespace WayFarer.Model
         public virtual ICollection<Attraction>? Attractions { get; set; }
         public virtual ICollection<Review>? Reviews { get; set; }
         public virtual ICollection<Itinerary>? Itineraries { get; set; }
+        public virtual ICollection<Wishlist>? Wishlists { get; set; }
     }
 }

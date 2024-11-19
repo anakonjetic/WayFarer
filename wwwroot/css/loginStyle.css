@@ -1,4 +1,4 @@
-﻿/* General Container Styling */
+﻿/* General Container Styling for Login */
 .containerLogin {
     width: 100%;
     max-width: 400px;
@@ -13,7 +13,7 @@
 .containerLogin h2 {
     text-align: center;
     font-family: 'Roboto', sans-serif;
-    color: #333; 
+    color: #333;
     font-size: 2rem;
     margin-bottom: 20px;
 }
@@ -23,8 +23,8 @@ input[type="text"], input[type="password"] {
     padding: 15px;
     margin: 10px 0;
     display: inline-block;
-    border: 2px solid #ccc; 
-    background-color: #fff; 
+    border: 2px solid #ccc;
+    background-color: #fff;
     color: #333;
     border-radius: 4px;
     font-size: 1rem;
@@ -32,8 +32,8 @@ input[type="text"], input[type="password"] {
 
 input[type="text"]:focus, input[type="password"]:focus {
     outline: none;
-    border-color: #888; 
-    background-color: #f1f1f1; 
+    border-color: #888;
+    background-color: #f1f1f1;
 }
 
 button {
@@ -59,19 +59,17 @@ button:hover {
 }
 
 .register-link a {
-    color: #555;
+    color: white;
     text-decoration: none;
-    font-weight: bold; 
-    padding: 8px 12px;
+    font-weight: bold;
+    padding: 12px;
     border-radius: 4px;
-    background-color: #f1f1f1;
+    background-color: #888;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .register-link a:hover {
-    background-color: #666;
-    color: #fff;
-    text-decoration: none;
+    background-color: #777;
 }
 
 .register-link a:focus {
@@ -81,4 +79,89 @@ button:hover {
 /* Validation message */
 .text-danger {
     font-size: 0.9rem;
+}
+
+.containerRegister {
+    width: 100%;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 12px; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); 
+    color: #333;
+}
+
+.containerRegister h2 {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+}
+
+input[type="text"], input[type="email"], input[type="date"], input[type="password"], select {
+    width: 100%;
+    padding: 14px 16px; 
+    margin: 12px 0;
+    display: inline-block;
+    border: 2px solid #ccc;
+    border-radius: 8px; 
+    background-color: #fff;
+    color: #333;
+    font-size: 1rem;
+    transition: border-color 0.3s, background-color 0.3s; 
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, select:focus {
+    outline: none;
+    border-color: #888; 
+    background-color: #f1f1f1; 
+}
+
+button {
+    background-color: #888;
+    color: white;
+    padding: 14px;
+    border: none;
+    width: 100%;
+    border-radius: 8px; 
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #777; 
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1rem;
+}
+
+.register-link a {
+    color: #555;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background-color: #f1f1f1;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.register-link a:hover {
+    background-color: #888;
+    color: white;
+}
+
+.register-link a:focus {
+    outline: none;
+}
+
+.text-danger {
+    font-size: 0.9rem;
+    color: #e74c3c; 
+    margin-bottom: 10px;
 }
