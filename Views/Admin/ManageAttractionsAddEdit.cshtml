@@ -33,12 +33,18 @@
         <ul id="citySuggestions" style="display: none; list-style: none; padding: 0; border: 1px solid #ddd;"></ul>
         <input type="hidden" asp-for="CityId" id="selectedCityId" value="@Model.City?.Id" />
 
-        <label for="ImageUrl">Image URL*</label>
-        <input type="text" asp-for="Image" id="imageUrlInput" placeholder="Enter image URL" onload="previewImage()" oninput="previewImage()" />
+        @if(Model.Id > 0)
+        {
+            <input type="hidden" value="@Model.Image" asp-for="Image" id="imageUrlInput" placeholder="Enter image URL" onload="previewImage()" oninput="previewImage()" />
+        }
+        else
+        {
+            <input type="hidden" value="https://i0.wp.com/epthinktank.eu/wp-content/uploads/2015/09/fotolia_72092403_subscription_xxl.jpg?fit=960%2C720&ssl=1" asp-for="Image" id="imageUrlInput" placeholder="Enter image URL" onload="previewImage()" oninput="previewImage()" />
+        }
 
-        <div id="imagePreviewContainer">
+        @* <div id="imagePreviewContainer">
             <img id="imagePreview" src="@Model.Image" alt="Image Preview" style="width: 100%; height: auto; display: none;" />
-        </div>
+        </div> *@
 
         <!-- Form Actions -->
         <div class="form-actions">
@@ -46,6 +52,19 @@
             <button type="submit" class="save-btn">@("Save")</button>
         </div>
     </form>
+    <br />
+    @if(Model.Id > 0)
+    {
+        <div class="form-group">
+            <div class="col-md-12">
+                <form id="attractionPhoto" asp-controller="Admin" asp-action="UploadAttractionPhoto"
+                      asp-route-id="@Model.Id"
+                      enctype="multipart/form-data" class="dropzone">
+                </form>
+            </div>
+        </div>
+    }
+
 </section>
 
 <footer></footer>
@@ -91,4 +110,23 @@
             imagePreview.style.display = "none";
         }
     }
+</script>
+
+<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+<script type="text/javascript">
+    Dropzone.options.attractionPhoto = {
+        init: function () {
+            let attractionPhoto = this;
+
+            attractionPhoto.options.maxFiles = 1;
+            attractionPhoto.options.addRemoveLinks = true;
+
+            attractionPhoto.options.renameFile = function (file) {
+                return new Date().getTime() + '_' + file.name.replace(" ", "_");
+            }
+        },
+        success: function (file, response) {
+            console.log({ file, response });
+        }
+    };
 </script>
