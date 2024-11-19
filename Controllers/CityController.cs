@@ -131,10 +131,13 @@ namespace WayFarer.Controllers
 
             if (citiesInWishlist == null || !citiesInWishlist.Any())
             {
-                return NotFound();
+                // If no cities in wishlist, return an empty list and display a message
+                ViewBag.Message = "You have no cities in your wishlist yet. Start adding your dream destinations!";
+                return View("~/Views/User/CitiesWishlist.cshtml", new List<City>());
             }
 
             return View("~/Views/User/CitiesWishlist.cshtml", citiesInWishlist);
         }
+
     }
 }

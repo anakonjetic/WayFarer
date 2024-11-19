@@ -11,7 +11,6 @@
 <body>
 
     <div class="container">
-        <!-- Light Grey Background for the Main Content -->
         <div class="wishlist-container">
             <div class="header">
                 <h2>My Wishlist</h2>
@@ -19,23 +18,33 @@
             </div>
             <h3 id="inspo_quote">Your dream destinations are just a click away. Explore your saved cities and start planning your next adventure!</h3>
 
-            <!-- Wishlist Cities Grid -->
-            <div class="wishlist-cities">
-                @foreach (var city in Model)
-                {
-                    <a href="@Url.Action("Details", "City", new { id = city.Id })" class="city-card-link">
-                        <div class="city-card">
-                            <div class="image-container">
-                                <img src="@city.Image" alt="@city.Name">
+            <!-- Display a message if no cities are in the wishlist -->
+            @if (Model == null || !Model.Any())
+            {
+                <div class="no-cities-message">
+                    <h3>@ViewBag.Message</h3>
+                </div>
+            }
+            else
+            {
+                <!-- Wishlist Cities Grid -->
+                <div class="wishlist-cities">
+                    @foreach (var city in Model)
+                    {
+                        <a href="@Url.Action("Details", "City", new { id = city.Id })" class="city-card-link">
+                            <div class="city-card">
+                                <div class="image-container">
+                                    <img src="@city.Image" alt="@city.Name">
+                                </div>
+                                <div class="city-info">
+                                    <h3>@city.Name</h3>
+                                    <p>@city.Description</p>
+                                </div>
                             </div>
-                            <div class="city-info">
-                                <h3>@city.Name</h3>
-                                <p>@city.Description</p>
-                            </div>
-                        </div>
-                    </a>
-                }
-            </div>
+                        </a>
+                    }
+                </div>
+            }
         </div>
     </div>
 
