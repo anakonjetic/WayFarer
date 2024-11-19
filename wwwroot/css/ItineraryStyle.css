@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+footer {
+    margin-top: 100px;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f5f5f5;
@@ -12,7 +16,7 @@ body {
 
 .section {
     padding: 2rem;
-    background-color: #f0f0f0; /* Light grey background */
+    background-color: #f0f0f0;
     margin-bottom: 1rem;
     border-radius: 10px;
 }
@@ -23,12 +27,12 @@ h2 {
     align-items: center;
 }
 
-    h2 span {
-        font-size: 1.5rem;
-    }
+h2 span {
+    font-size: 1.5rem;
+}
 
 .btn {
-    background-color: #6c757d; /* Grey background */
+    background-color: #6c757d;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -38,12 +42,12 @@ h2 {
     transition: background-color 0.3s ease;
 }
 
-    .btn:hover {
-        background-color: #5a6268;
-    }
+.btn:hover {
+    background-color: #5a6268;
+}
 
 .itinerary-details-page {
-    background-color: #f0f0f0; /* Light grey background for entire page */
+    background-color: #f0f0f0;
     padding: 30px;
     border-radius: 10px;
 }
@@ -69,18 +73,18 @@ h2 {
     gap: 20px;
 }
 
-    .edit-delete-icons a,
-    .edit-delete-icons button {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 10px;
-    }
+.edit-delete-icons a,
+.edit-delete-icons button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
 
-    .edit-delete-icons i {
-        font-size: 22px;
-        color: #333;
-    }
+.edit-delete-icons i {
+    font-size: 22px;
+    color: #333;
+}
 
 .edit-icon {
     border: 2px solid #333;
@@ -88,10 +92,10 @@ h2 {
     padding: 5px;
 }
 
-    .edit-icon:hover {
-        border-color: #848484; /* Light grey border */
-        background-color: #848484;
-    }
+.edit-icon:hover {
+    border-color: #848484;
+    background-color: #848484;
+}
 
 .edit-delete-icons i:hover {
     color: #333;
@@ -108,11 +112,11 @@ h2 {
     padding-right: 30px;
 }
 
-    .itinerary-info p {
-        font-size: 18px;
-        margin: 10px 0;
-        line-height: 1.6;
-    }
+.itinerary-info p {
+    font-size: 18px;
+    margin: 10px 0;
+    line-height: 1.6;
+}
 
 /* City image styling */
 .itinerary-details .image-container img {
@@ -134,9 +138,9 @@ h2 {
     transition: background-color 0.3s ease;
 }
 
-    .delete-btn:hover {
-        background-color: #e04d41;
-    }
+.delete-btn:hover {
+    background-color: #e04d41;
+}
 
 .popup {
     display: none;
@@ -159,11 +163,11 @@ h2 {
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
 }
 
-    .popup-content h3 {
-        font-size: 24px;
-        margin-bottom: 20px;
-        font-weight: 600;
-    }
+.popup-content h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
 
 .popup-buttons {
     display: flex;
@@ -172,13 +176,13 @@ h2 {
     margin-top: 30px;
 }
 
-    .popup-buttons button {
-        padding: 12px 25px;
-        font-size: 16px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
+.popup-buttons button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
 .confirm-btn {
     background-color: #dc3545;
@@ -186,9 +190,9 @@ h2 {
     border: none;
 }
 
-    .confirm-btn:hover {
-        background-color: #c82333;
-    }
+.confirm-btn:hover {
+    background-color: #c82333;
+}
 
 .cancel-btn {
     background-color: #6c757d;
@@ -196,9 +200,9 @@ h2 {
     border: none;
 }
 
-    .cancel-btn:hover {
-        background-color: #5a6268;
-    }
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
 
 .popup-buttons .cancel-btn {
     margin-left: 10px;
@@ -214,23 +218,23 @@ h2 {
     box-sizing: border-box;
 }
 
-    .edit-itinerary-container h2 {
-        font-size: 32px;
-        color: #333;
-        text-align: center;
-        margin-bottom: 30px;
-    }
+.edit-itinerary-container h2 {
+    font-size: 32px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
 
 .form-group {
     margin-bottom: 20px;
 }
 
-    .form-group label {
-        font-size: 16px;
-        color: #333;
-        display: block;
-        margin-bottom: 8px;
-    }
+.form-group label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
 
 .form-control {
     width: 100%;
@@ -242,11 +246,11 @@ h2 {
     background-color: #f9f9f9;
 }
 
-    .form-control:focus {
-        border-color: #6c757d;
-        background-color: #fff;
-        outline: none;
-    }
+.form-control:focus {
+    border-color: #6c757d;
+    background-color: #fff;
+    outline: none;
+}
 
 .edit-itinerary-container .form-actions {
     display: flex;
@@ -261,10 +265,10 @@ h2 {
     border: 1px solid #ddd;
 }
 
-    .edit-itinerary-container .cancel-btn:hover {
-        background-color: #e0e0e0;
-        border-color: #ccc;
-    }
+.edit-itinerary-container .cancel-btn:hover {
+    background-color: #e0e0e0;
+    border-color: #ccc;
+}
 
 .edit-itinerary-container .save-btn {
     background-color: #6c757d;
@@ -276,9 +280,9 @@ h2 {
     transition: background-color 0.3s ease;
 }
 
-    .edit-itinerary-container .save-btn:hover {
-        background-color: #5a6268;
-    }
+.edit-itinerary-container .save-btn:hover {
+    background-color: #5a6268;
+}
 
 /* Responsive Design for smaller screens */
 @media (max-width: 768px) {
@@ -305,73 +309,72 @@ h2 {
     box-sizing: border-box;
 }
 
-    .create-itinerary-container h2 {
-        font-size: 32px;
-        color: #333;
-        text-align: center;
-        margin-bottom: 30px;
-    }
+.create-itinerary-container h2 {
+    font-size: 32px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
 
-    .create-itinerary-container .form-group {
-        margin-bottom: 20px;
-    }
+.create-itinerary-container .form-group {
+    margin-bottom: 20px;
+}
 
-        .create-itinerary-container .form-group label {
-            font-size: 16px;
-            color: #333;
-            display: block;
-            margin-bottom: 8px;
-        }
+.create-itinerary-container .form-group label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
 
-    .create-itinerary-container .form-control {
-        width: 100%;
-        padding: 12px;
-        font-size: 16px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-sizing: border-box;
-        background-color: #f9f9f9;
-    }
+.create-itinerary-container .form-control {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+}
 
-        .create-itinerary-container .form-control:focus {
-            border-color: #6c757d;
-            background-color: #fff;
-            outline: none;
-        }
+.create-itinerary-container .form-control:focus {
+    border-color: #6c757d;
+    background-color: #fff;
+    outline: none;
+}
 
-    .create-itinerary-container .form-actions {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 20px;
-    }
+.create-itinerary-container .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
 
-    .create-itinerary-container .cancel-btn {
-        background-color: #f0f0f0;
-        color: #333;
-        border: 1px solid #ddd;
-    }
+.create-itinerary-container .cancel-btn {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+}
 
-        .create-itinerary-container .cancel-btn:hover {
-            background-color: #e0e0e0;
-            border-color: #ccc;
-        }
+.create-itinerary-container .cancel-btn:hover {
+    background-color: #e0e0e0;
+    border-color: #ccc;
+}
 
-    .create-itinerary-container .save-btn {
-        background-color: #6c757d;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 20px;
-        cursor: pointer;
-        font-size: 1rem;
-        transition: background-color 0.3s ease;
-    }
+.create-itinerary-container .save-btn {
+    background-color: #6c757d;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
 
-        .create-itinerary-container .save-btn:hover {
-            background-color: #5a6268;
-        }
+.create-itinerary-container .save-btn:hover {
+    background-color: #5a6268;
+}
 
-/* Back to Homepage Button */
 .back-button {
     padding: 10px 20px;
     font-size: 1rem;
@@ -383,12 +386,11 @@ h2 {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-    .back-button:hover {
-        background-color: #6c757d;
-        color: white;
-    }
+.back-button:hover {
+    background-color: #6c757d;
+    color: white;
+}
 
-/* Attraction Grid */
 .attractions-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -404,47 +406,46 @@ h2 {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-    .attraction-card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
+.attraction-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
 
-    /* Image container inside the attraction card */
-    .attraction-card .image-container {
-        width: 100%;
-        height: 200px;
-        overflow: hidden;
-    }
+/* Image container inside the attraction card */
+.attraction-card .image-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
 
-        .attraction-card .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
+.attraction-card .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
 
-    .attraction-card:hover .image-container img {
-        transform: scale(1.1);
-    }
+.attraction-card:hover .image-container img {
+    transform: scale(1.1);
+}
 
-/* Attraction information */
 .attraction-info {
     padding: 15px;
 }
 
-    .attraction-info h5 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-    }
+.attraction-info h5 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
 
-    .attraction-info p {
-        font-size: 1rem;
-        margin-bottom: 5px;
-    }
+.attraction-info p {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
 
-    .attraction-info strong {
-        font-weight: bold;
-    }
+.attraction-info strong {
+    font-weight: bold;
+}
 
 .custom-button {
     padding: 10px 20px;
@@ -458,15 +459,16 @@ h2 {
     text-align: center;
 }
 
-    .custom-button:hover {
-        background-color: #d9d9d9;
-        color: #000;
-    }
+.custom-button:hover {
+    background-color: #d9d9d9;
+    color: #000;
+}
 
-    .custom-button:active {
-        background-color: #bbb;
-        color: #333;
-    }
+.custom-button:active {
+    background-color: #bbb;
+    color: #333;
+}
+
 .back-button:hover {
     background-color: #d9d9d9;
     color: #000;
@@ -488,37 +490,37 @@ h2 {
     border-radius: 10px;
 }
 
-    .weather-table tr {
-        display: flex;
-        justify-content: space-around; /* Evenly space out columns within each row */
-    }
+.weather-table tr {
+    display: flex;
+    justify-content: space-around; /* Evenly space out columns within each row */
+}
 
-    .weather-table td {
-        flex: 1;
-        max-width: 20%; /* Ensures each column takes up no more than 20% */
-        padding: 15px;
-        text-align: center;
-        background-color: #ffffff;
-        color: #333;
-        border: 1px solid #ddd;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
+.weather-table td {
+    flex: 1;
+    max-width: 20%; /* Ensures each column takes up no more than 20% */
+    padding: 15px;
+    text-align: center;
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-        .weather-table td p {
-            margin: 5px 0;
-        }
+.weather-table td p {
+    margin: 5px 0;
+}
 
-    .weather-table img {
-        width: 40px; /* Size of the weather icon */
-        height: auto;
-        margin: 5px 0;
-        border-radius: 5px;
-        background-color: #f0f8ff;
-    }
+.weather-table img {
+    width: 40px;
+    height: auto;
+    margin: 5px 0;
+    border-radius: 5px;
+    background-color: #f0f8ff;
+}
 
 /* Responsive styling to adjust columns on smaller screens */
 @media (max-width: 600px) {
@@ -529,4 +531,158 @@ h2 {
     .weather-table td {
         width: 50%; /* Two columns per row on smaller screens */
     }
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 10px 20px;
+    margin-right: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+    background-color: #444;
+}
+
+.tab-button.active {
+    background-color: #555;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.plan-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.save-btn {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: 1px solid #333;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.save-btn:hover {
+    background-color: #444;
+}
+
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Multi-Column Layout for Daily Plans */
+#daily-plans-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 600px; 
+}
+
+.day-plan {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.day-plan:hover {
+    background-color: #eaeaea;
+}
+
+.day-plan h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    resize: none;
+    transition: all 0.3s ease;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #333;
+}
+
+textarea:focus {
+    overflow-y: hidden;
+}
+
+textarea.auto-expand {
+    height: auto;
+    min-height: 80px;
+    max-height: 300px;
+}
+
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    display: none;
+    width: 250px;
+    font-size: 16px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.notification.show {
+    display: block;
+}
+
+.notification .close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.section {
+    padding: 2rem;
+    background-color: #f0f0f0;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    display: none;
+}
+
+.section.active {
+    display: block;
 }

@@ -1,0 +1,52 @@
+﻿@model List<WayFarer.Model.City>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist</title>
+    <link rel="stylesheet" href="~/css/cityWishlist.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="wishlist-container">
+            <div class="header">
+                <h2>My Wishlist</h2>
+                <a href="/" class="back-button">&lt; Back to Homepage</a>
+            </div>
+            <h3 id="inspo_quote">Your dream destinations are just a click away. Explore your saved cities and start planning your next adventure!</h3>
+
+            <!-- Display a message if no cities are in the wishlist -->
+            @if (Model == null || !Model.Any())
+            {
+                <div class="no-cities-message">
+                    <h3>@ViewBag.Message</h3>
+                </div>
+            }
+            else
+            {
+                <!-- Wishlist Cities Grid -->
+                <div class="wishlist-cities">
+                    @foreach (var city in Model)
+                    {
+                        <a href="@Url.Action("Details", "City", new { id = city.Id })" class="city-card-link">
+                            <div class="city-card">
+                                <div class="image-container">
+                                    <img src="@city.Image" alt="@city.Name">
+                                </div>
+                                <div class="city-info">
+                                    <h3>@city.Name</h3>
+                                    <p>@city.Description</p>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+
+</body>
+</html>

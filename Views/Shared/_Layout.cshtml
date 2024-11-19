@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WayFarer.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 </head>
 <body>
     <header>
@@ -39,11 +40,13 @@
                         {
                             @if (HttpContextAccessor.HttpContext.Session.GetInt32("UserId") != null)
                             {
+                                <!-- Link to My Trips (Index) -->
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Index">My Trips</a>
+                                    <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">My Trips</a>
                                 </li>
+                                <!-- Link to Wishlist -->
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Index">Cities</a>
+                                    <a class="nav-link text-dark" asp-controller="City" asp-action="CitiesWishlist">City Wishlist</a>
                                 </li>
                             }
                             else

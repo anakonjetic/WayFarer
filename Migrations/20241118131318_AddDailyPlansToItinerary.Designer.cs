@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WayFarer.Repository;
 
@@ -11,9 +12,10 @@ using WayFarer.Repository;
 namespace WayFarer.Migrations
 {
     [DbContext(typeof(WayFarerDbContext))]
-    partial class WayFarerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241118131318_AddDailyPlansToItinerary")]
+    partial class AddDailyPlansToItinerary
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -153,8 +155,8 @@ namespace WayFarer.Migrations
                         {
                             Id = 1,
                             CityId = 1,
-                            EndDate = new DateTime(2024, 11, 19, 17, 59, 18, 459, DateTimeKind.Local).AddTicks(7529),
-                            StartDate = new DateTime(2024, 11, 19, 17, 59, 18, 459, DateTimeKind.Local).AddTicks(7525),
+                            EndDate = new DateTime(2024, 11, 18, 14, 13, 18, 244, DateTimeKind.Local).AddTicks(3326),
+                            StartDate = new DateTime(2024, 11, 18, 14, 13, 18, 244, DateTimeKind.Local).AddTicks(3324),
                             TotalPrice = 0m,
                             UserId = 1
                         });
@@ -262,7 +264,7 @@ namespace WayFarer.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2024, 11, 19, 17, 59, 18, 459, DateTimeKind.Local).AddTicks(7263),
+                            DateOfBirth = new DateTime(2024, 11, 18, 14, 13, 18, 244, DateTimeKind.Local).AddTicks(3209),
                             Email = "skorkut@gmail.com",
                             Gender = 0,
                             IsActive = true,
@@ -275,7 +277,7 @@ namespace WayFarer.Migrations
                         new
                         {
                             Id = 2,
-                            DateOfBirth = new DateTime(2024, 11, 19, 17, 59, 18, 459, DateTimeKind.Local).AddTicks(7355),
+                            DateOfBirth = new DateTime(2024, 11, 18, 14, 13, 18, 244, DateTimeKind.Local).AddTicks(3267),
                             Email = "ignacijefuchs@gmail.com",
                             Gender = 0,
                             IsActive = true,
@@ -285,30 +287,6 @@ namespace WayFarer.Migrations
                             Surname = "Lisinski",
                             Username = "ignacijeFux"
                         });
-                });
-
-            modelBuilder.Entity("WayFarer.Model.Wishlist", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CityId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CityId");
-
-                    b.HasIndex("UserId", "CityId")
-                        .IsUnique();
-
-                    b.ToTable("Wishlist", (string)null);
                 });
 
             modelBuilder.Entity("WayFarer.Model.Attraction", b =>
@@ -358,25 +336,6 @@ namespace WayFarer.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WayFarer.Model.Wishlist", b =>
-                {
-                    b.HasOne("WayFarer.Model.City", "City")
-                        .WithMany("Wishlists")
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("WayFarer.Model.User", "User")
-                        .WithMany("Wishlists")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("City");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("WayFarer.Model.Attraction", b =>
                 {
                     b.Navigation("Reviews");
@@ -389,15 +348,11 @@ namespace WayFarer.Migrations
                     b.Navigation("Itineraries");
 
                     b.Navigation("Reviews");
-
-                    b.Navigation("Wishlists");
                 });
 
             modelBuilder.Entity("WayFarer.Model.User", b =>
                 {
                     b.Navigation("Reviews");
-
-                    b.Navigation("Wishlists");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,27 +1,167 @@
-﻿.containerLogin {
-    width: 300px;
-    margin: 0 auto;
-    padding-top: 100px;
+﻿/* General Container Styling for Login */
+.containerLogin {
+    width: 100%;
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+.containerLogin h2 {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
 input[type="text"], input[type="password"] {
     width: 100%;
-    padding: 10px;
-    margin: 5px 0 20px 0;
+    padding: 15px;
+    margin: 10px 0;
     display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+    border: 2px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    outline: none;
+    border-color: #888;
+    background-color: #f1f1f1;
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: #888;
     color: white;
-    padding: 10px;
+    padding: 12px;
     border: none;
     width: 100%;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #777;
 }
 
 .register-link {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+
+.register-link a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 4px;
+    background-color: #888;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.register-link a:hover {
+    background-color: #777;
+}
+
+.register-link a:focus {
+    outline: none;
+}
+
+/* Validation message */
+.text-danger {
+    font-size: 0.9rem;
+}
+
+.containerRegister {
+    width: 100%;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 12px; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); 
+    color: #333;
+}
+
+.containerRegister h2 {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+}
+
+input[type="text"], input[type="email"], input[type="date"], input[type="password"], select {
+    width: 100%;
+    padding: 14px 16px; 
+    margin: 12px 0;
+    display: inline-block;
+    border: 2px solid #ccc;
+    border-radius: 8px; 
+    background-color: #fff;
+    color: #333;
+    font-size: 1rem;
+    transition: border-color 0.3s, background-color 0.3s; 
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, select:focus {
+    outline: none;
+    border-color: #888; 
+    background-color: #f1f1f1; 
+}
+
+button {
+    background-color: #888;
+    color: white;
+    padding: 14px;
+    border: none;
+    width: 100%;
+    border-radius: 8px; 
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #777; 
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1rem;
+}
+
+.register-link a {
+    color: #555;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background-color: #f1f1f1;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.register-link a:hover {
+    background-color: #888;
+    color: white;
+}
+
+.register-link a:focus {
+    outline: none;
+}
+
+.text-danger {
+    font-size: 0.9rem;
+    color: #e74c3c; 
+    margin-bottom: 10px;
 }

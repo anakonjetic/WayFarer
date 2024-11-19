@@ -67,10 +67,10 @@ h4 {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-    .attraction-card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
+.attraction-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
 
 .image-container {
     width: 100%;
@@ -78,12 +78,12 @@ h4 {
     overflow: hidden;
 }
 
-    .image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s;
-    }
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
 
 .attraction-card:hover .image-container img {
     transform: scale(1.1);
@@ -93,19 +93,19 @@ h4 {
     padding: 15px;
 }
 
-    .attraction-info h5 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-    }
+.attraction-info h5 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
 
-    .attraction-info p {
-        font-size: 1rem;
-        margin-bottom: 5px;
-    }
+.attraction-info p {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
 
-    .attraction-info strong {
-        font-weight: bold;
-    }
+.attraction-info strong {
+    font-weight: bold;
+}
 
 /* Reviews Table Styling */
 .reviews table {
@@ -151,29 +151,64 @@ h4 {
     font-weight: bold;
 }
 
-/* Back to Homepage Button */
-.back-button {
+/* Container to hold both buttons */
+.button-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adds space between the buttons */
+}
+
+/* Common styles for both buttons */
+.wishlist-button, .back-button {
     padding: 10px 20px;
     font-size: 1rem;
-    border: 2px solid #333;
-    color: #333;
-    text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
     display: inline-block;
     text-align: center;
+    text-decoration: none;
 }
 
-    .back-button:hover {
-        background-color: #d9d9d9;
-        color: #000;
-    }
+/* Specific styles for wishlist button */
+.wishlist-button {
+    background-color: #f5f5f5;
+    border: 2px solid #333;
+    color: #333;
+}
 
-    .back-button:active {
-        background-color: #bbb;
-        color: #333;
-    }
+.wishlist-button:hover {
+    background-color: #d9d9d9;
+    color: #000;
+}
 
+/* Specific styles for back button */
+.back-button {
+    border: 2px solid #333;
+    background-color: #fff;
+    color: #333;
+}
+
+.back-button:hover {
+    background-color: #d9d9d9;
+    color: #000;
+}
+
+.wishlist-button:active, .back-button:active {
+    background-color: #bbb;
+    color: #333;
+}
+
+.wishlist-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #ccc;
+}
+
+.added-to-wishlist {
+    color: red; 
+}
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {

@@ -13,6 +13,8 @@ namespace WayFarer.Repository
         public DbSet<Attraction>? Attraction { get; set; }
         public DbSet<Review>? Review { get; set; }
 
+        public DbSet<Wishlist>? Wishlist { get; set; }
+
         public WayFarerDbContext(DbContextOptions<WayFarerDbContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -33,6 +35,7 @@ namespace WayFarer.Repository
             modelBuilder.ApplyConfiguration(new CityConfiguration());
             modelBuilder.ApplyConfiguration(new AttractionConfiguration());
             modelBuilder.ApplyConfiguration(new ReviewConfiguration());
+            modelBuilder.ApplyConfiguration(new WishlistConfiguration());
 
             modelBuilder.Entity<Itinerary>()
                 .HasOne(i => i.City)

@@ -4,16 +4,20 @@ using WayFarer.Model;
 using WayFarer.Model.Enum;
 using Microsoft.EntityFrameworkCore;
 using WayFarer.Repository;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Internal;
 
 namespace WayFarer.Controllers
 {
     public class AdminController : Controller
     {
         private readonly WayFarerDbContext _dbContext;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public AdminController(WayFarerDbContext dbContext)
+        public AdminController(WayFarerDbContext dbContext, IWebHostEnvironment webHostEnvironment)
         {
             _dbContext = dbContext;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Dashboard()
@@ -94,7 +98,6 @@ namespace WayFarer.Controllers
 
                 city.Name = model.Name;
                 city.Description = model.Description;
-                city.Image = model.Image;
 
                 _dbContext.SaveChanges();
                 return RedirectToAction("ManageCities");
@@ -103,7 +106,6 @@ namespace WayFarer.Controllers
             return View(model);
         }
 
-        [HttpPost]
         public IActionResult ManageCitiesDelete(int id)
         {
             var city = _dbContext.City.Find(id);
@@ -210,12 +212,19 @@ namespace WayFarer.Controllers
         {
             if (!ModelState.IsValid) return View("ManageAttractionsAddEdit", model);
 
-            _dbContext.Attraction.Update(model);
+            var attraction = _dbContext.Attraction.Include(c => c.City).SingleOrDefault(c => c.Id == model.Id);
+
+            attraction.Name = model.Name;
+            attraction.Price = model.Price;
+            attraction.Category = model.Category;
+            attraction.CityId = model.CityId;
+
+            _dbContext.Attraction.Update(attraction);
             _dbContext.SaveChanges();
             return RedirectToAction("ManageAttractions");
         }
 
-        [HttpPost]
+   
         public IActionResult ManageAttractionsDelete(int id)
         {
             var attraction = _dbContext.Attraction.Find(id);
@@ -318,6 +327,43 @@ namespace WayFarer.Controllers
             return Ok();
         }
 
+
+
+        public IActionResult UploadCityPhoto(int id, IFormFile file)
+        {
+            var destination = Path.Combine(_webHostEnvironment.WebRootPath, file.FileName);
+            Stream fileStream = new FileStream(path: destination, mode: FileMode.Create);
+            file.CopyTo(fileStream);
+
+            City city = _dbContext.City.Where(f => f.Id == id).FirstOrDefault();
+
+            
+
+            city.Image = "/" + file.FileName;
+
+            _dbContext.City.Update(city);
+            _dbContext.SaveChanges();
+
+            return Json(new { success = true });
+        }
+
+        public IActionResult UploadAttractionPhoto(int id, IFormFile file)
+        {
+            var destination = Path.Combine(_webHostEnvironment.WebRootPath, file.FileName);
+            Stream fileStream = new FileStream(path: destination, mode: FileMode.Create);
+            file.CopyTo(fileStream);
+
+            Attraction attraction = _dbContext.Attraction.Where(f => f.Id == id).FirstOrDefault();
+
+
+
+            attraction.Image = "/" + file.FileName;
+
+            _dbContext.Attraction.Update(attraction);
+            _dbContext.SaveChanges();
+
+            return Json(new { success = true });
+        }
 
     }
 
