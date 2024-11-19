@@ -212,7 +212,14 @@ namespace WayFarer.Controllers
         {
             if (!ModelState.IsValid) return View("ManageAttractionsAddEdit", model);
 
-            _dbContext.Attraction.Update(model);
+            var attraction = _dbContext.Attraction.Include(c => c.City).SingleOrDefault(c => c.Id == model.Id);
+
+            attraction.Name = model.Name;
+            attraction.Price = model.Price;
+            attraction.Category = model.Category;
+            attraction.CityId = model.CityId;
+
+            _dbContext.Attraction.Update(attraction);
             _dbContext.SaveChanges();
             return RedirectToAction("ManageAttractions");
         }
@@ -335,6 +342,24 @@ namespace WayFarer.Controllers
             city.Image = "/" + file.FileName;
 
             _dbContext.City.Update(city);
+            _dbContext.SaveChanges();
+
+            return Json(new { success = true });
+        }
+
+        public IActionResult UploadAttractionPhoto(int id, IFormFile file)
+        {
+            var destination = Path.Combine(_webHostEnvironment.WebRootPath, file.FileName);
+            Stream fileStream = new FileStream(path: destination, mode: FileMode.Create);
+            file.CopyTo(fileStream);
+
+            Attraction attraction = _dbContext.Attraction.Where(f => f.Id == id).FirstOrDefault();
+
+
+
+            attraction.Image = "/" + file.FileName;
+
+            _dbContext.Attraction.Update(attraction);
             _dbContext.SaveChanges();
 
             return Json(new { success = true });
