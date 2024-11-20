@@ -21,6 +21,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 30px;
 }
 
 .city-title {
@@ -32,6 +33,12 @@ body {
 .city-info {
     font-size: 1rem;
     margin-bottom: 20px;
+}
+
+iframe{
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
 }
 
 .image-container img {
