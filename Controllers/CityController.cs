@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WayFarer.Controllers.Services;
 using WayFarer.Model;
 using WayFarer.Repository;
 
@@ -8,10 +9,12 @@ namespace WayFarer.Controllers
     public class CityController : Controller
     {
         private readonly WayFarerDbContext _dbContext;
+        private readonly GoogleMapService _googleMapService;
 
-        public CityController(WayFarerDbContext dbContext)
+        public CityController(WayFarerDbContext dbContext, GoogleMapService googleMapService)
         {
             _dbContext = dbContext;
+            _googleMapService = googleMapService;
         }
 
         // City details
@@ -36,6 +39,7 @@ namespace WayFarer.Controllers
                 .Any(w => w.UserId == userId && w.CityId == id);
 
             ViewBag.IsInWishlist = isInWishlist;
+            ViewBag.GoogleMapLocation = _googleMapService.GetLocationUrl(city.Name);
 
             return View("~/Views/User/CityDetails.cshtml", city);
         }

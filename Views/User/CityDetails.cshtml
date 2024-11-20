@@ -36,67 +36,86 @@
             </div>
 
 
-            <div class="city-details">
-                <div class="city-info">
-                    <p><strong>Description:</strong> @Model.Description</p>
-                </div>
-                <div class="image-container">
-                    <img src="@Model.Image" alt="@Model.Name">
-                </div>
-            </div>
-
-            <div class="attractions">
-                <h4>Attractions:</h4>
-                <div class="attractions-grid">
-                    @foreach (var attraction in Model.Attractions)
-                    {
-                        <div class="attraction-card">
+            <div class="row">
+                <div class="city-details">
+                    <div class="city-info">
+                        <p><strong>Description:</strong> @Model.Description</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
                             <div class="image-container">
-                                <img src=@attraction.Image alt="@attraction.Name">
-                            </div>
-                            <div class="attraction-info">
-                                <h5>@attraction.Name</h5>
-                                <p><strong>Category:</strong> @attraction.Category</p>
-                                <p><strong>Price:</strong> €@attraction.Price</p>
+                                <img src="@Model.Image" alt="@Model.Name">
                             </div>
                         </div>
-                    }
+                        <div class="col-md-8">
+                            <iframe loading="lazy"
+                                    allowfullscreen
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    src=@ViewBag.GoogleMapLocation>
+                            </iframe>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="reviews">
-                <h4>Reviews:</h4>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Reviewer</th>
-                            <th>Rating</th>
-                            <th>Comment</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.Reviews.Any())
+            <div class="row">
+                <div class="attractions">
+                    <h4>Attractions:</h4>
+                    <div class="attractions-grid">
+                        @foreach (var attraction in Model.Attractions)
                         {
-                            @foreach (var review in Model.Reviews)
+                            <div class="attraction-card">
+                                <div class="image-container">
+                                    <img src=@attraction.Image alt="@attraction.Name">
+                                </div>
+                                <div class="attraction-info">
+                                    <h5>@attraction.Name</h5>
+                                    <p><strong>Category:</strong> @attraction.Category</p>
+                                    <p><strong>Price:</strong> €@attraction.Price</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="reviews">
+                    <h4>Reviews:</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Reviewer</th>
+                                <th>Rating</th>
+                                <th>Comment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Reviews.Any())
+                            {
+                                @foreach (var review in Model.Reviews)
+                                {
+                                    <tr>
+                                        <td>@review.User?.Name @review.User?.Surname</td>
+                                        <td>@review.Rating</td>
+                                        <td>@review.Comment</td>
+                                    </tr>
+                                }
+                            }
+                            else
                             {
                                 <tr>
-                                    <td>@review.User?.Name @review.User?.Surname</td>
-                                    <td>@review.Rating</td>
-                                    <td>@review.Comment</td>
+                                    <td colspan="3" class="no-reviews-message">There are no reviews yet for this city.</td>
                                 </tr>
                             }
-                        }
-                        else
-                        {
-                            <tr>
-                                <td colspan="3" class="no-reviews-message">There are no reviews yet for this city.</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+
+    
 
     <script>
         function toggleWishlist(cityId) {
